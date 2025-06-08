@@ -1,6 +1,7 @@
-@use '../../styles/partials/colors';
-@use '../../styles/partials/typography';
-@use '../../styles/partials/spaces';
+@use '@backstabbersgame/design-system/styles/partials/colors';
+@use '@backstabbersgame/design-system/styles/partials/typography';
+@use '@backstabbersgame/design-system/styles/partials/spaces';
+
 
 .nav {
   display: flex;

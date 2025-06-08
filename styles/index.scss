@@ -1,9 +1,13 @@
-@forward 'globals';
-@forward 'partials/colors';
-@forward 'partials/typography';
-@forward 'partials/spaces';
-@forward 'partials/breakpoints';
-
+// @forward 'globals';
+// @forward 'partials/colors';
+// @forward 'partials/typography';
+// @forward 'partials/spaces';
+// @forward 'partials/breakpoints';
+@use 'globals';
+@use 'partials/colors';
+@use 'partials/typography';
+@use 'partials/spaces';
+@use 'partials/breakpoints';
 .sb-main-padded.sb-show-main {
   padding: 1rem 0 !important;
 }

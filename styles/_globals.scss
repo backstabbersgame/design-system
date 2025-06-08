@@ -1,9 +1,6 @@
 @use 'partials/colors' as colors;
 @use 'partials/typography' as typography;
 @use 'partials/spaces' as spaces;
-@use '../components/Button/Button.module.scss';
-@use '../components/Grid/Grid.module.scss';
-@use '../components/InputText/InputText.module.scss';
 
 * {
   margin: 0;
