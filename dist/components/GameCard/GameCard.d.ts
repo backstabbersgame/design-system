@@ -23,3 +23,4 @@ interface GameCardProps {
 }
 declare const GameCard: ({ id, images, details, buttonText, name, onHeightChange, }: GameCardProps) => React.JSX.Element;
 export default GameCard;
+//# sourceMappingURL=GameCard.d.ts.map

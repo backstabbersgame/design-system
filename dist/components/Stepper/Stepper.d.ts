@@ -16,3 +16,4 @@ export interface StepperProps {
 }
 declare const Stepper: ({ steps, minSteps, maxSteps, currentStep, className, onStepChange, isStepClickable, }: StepperProps) => React.JSX.Element | null;
 export default Stepper;
+//# sourceMappingURL=Stepper.d.ts.map

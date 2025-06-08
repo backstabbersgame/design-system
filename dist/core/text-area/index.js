@@ -9,10 +9,10 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './index.module.scss';
-export const BasicInput = (_a) => {
+export const BasicTextArea = forwardRef((_a, ref) => {
     var { className } = _a, props = __rest(_a, ["className"]);
-    return (<input className={`${styles.input} ${className || ''}`} {...props}/>);
-};
-export default BasicInput;
+    return (React.createElement("textarea", Object.assign({ ref: ref, className: `${styles.textarea} ${className || ''}` }, props)));
+});
+export default BasicTextArea;

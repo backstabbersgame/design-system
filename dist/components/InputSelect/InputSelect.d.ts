@@ -14,3 +14,4 @@ export interface InputTextProps extends SelectHTMLAttributes<HTMLSelectElement> 
 }
 declare const InputSelect: React.FC<InputTextProps>;
 export default InputSelect;
+//# sourceMappingURL=InputSelect.d.ts.map

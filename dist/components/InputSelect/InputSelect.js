@@ -15,27 +15,13 @@ import BasicLabel from '../../core/label';
 import BasicSelect from '../../core/select';
 const InputSelect = (_a) => {
     var { label, placeholder, options, hint, error, required = false, disabled = false, id, className } = _a, props = __rest(_a, ["label", "placeholder", "options", "hint", "error", "required", "disabled", "id", "className"]);
-    return (<div className={styles.container}>
-      {label && (<BasicLabel htmlFor={id}>
-          {label}
-          {required && <BasicLabel className={styles.required}></BasicLabel>}
-        </BasicLabel>)}
-      <div className={styles.field}>
-        <BasicSelect id={id} options={options} disabled={disabled} {...props}/>
-      </div>
-      <span id={`${id}-hint`} className={error ? styles.error : styles.hint}>
-        {error ? error : hint || '\u00A0'}
-      </span>
-      {/* {hint && (
-          <span
-            id={`${id}-hint`}
-            className={styles.hint}
-          >
-            {hint}
-          </span>
-        )}
-        {error && <span className={styles.error}>{error}</span>} */}
-    </div>);
+    return (React.createElement("div", { className: styles.container },
+        label && (React.createElement(BasicLabel, { htmlFor: id },
+            label,
+            required && React.createElement(BasicLabel, { className: styles.required }))),
+        React.createElement("div", { className: styles.field },
+            React.createElement(BasicSelect, Object.assign({ id: id, options: options, disabled: disabled }, props))),
+        React.createElement("span", { id: `${id}-hint`, className: error ? styles.error : styles.hint }, error ? error : hint || '\u00A0')));
     // return (
     //   <div className={styles['select-wrapper']}>
     //     {label && (

@@ -1,34 +1,36 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "src",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "incremental": true,
-    "target": "ES2017",
+    "target": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "noEmit": false,
     "esModuleInterop": true,
     "module": "esnext",
     "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "dist",
-    "paths": {
-      "@backstabbersgame/design-system/*": ["src/*"]
-    }
+    "moduleResolution": "node"
+    // "typeRoots": ["./node_modules/@types", "./types"],
+    // "paths": {
+    //   "@backstabbersgame/design-system/*": ["src/*"]
+    // }
   },
   "include": [
-    "next-env.d.ts",
+    // "next-env.d.ts",
     "global.d.ts",
-    "src/**/*",
-    ".next/types/**/*.ts",
-    "src/types/**/*"
+    "src"
+    // "src/**/*",
+    // ".next/types/**/*.ts",
+    // "src/types/**/*"
   ],
   "exclude": [
+    "dist",
     "node_modules",
     "next.config.ts",
     "**/*.test.ts",

@@ -1,4 +1,3 @@
-import './styles/index.scss';
 export { default as BasicButton } from './core/button/index';
 export { default as BasicHeader } from './core/header/index';
 export { default as BasicInput } from './core/input/index';
@@ -16,3 +15,4 @@ export { default as InputTextArea } from './components/InputTextArea/InputTextAr
 export { default as ModalMenu } from './components/ModalMenu/ModalMenu';
 export { default as Stepper } from './components/Stepper/Stepper';
 export { default as Upload } from './components/Upload/Upload';
+//# sourceMappingURL=index.d.ts.map

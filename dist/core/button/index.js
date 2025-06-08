@@ -15,12 +15,8 @@ export const BasicButton = (_a) => {
     var { children, className, href } = _a, props = __rest(_a, ["children", "className", "href"]);
     const combinedClassName = `${styles.button} ${className || ''}`;
     if (href) {
-        return (<a className={combinedClassName} href={href} {...props}>
-        {children}
-      </a>);
+        return (React.createElement("a", Object.assign({ className: combinedClassName, href: href }, props), children));
     }
-    return (<button className={combinedClassName} {...props}>
-      {children}
-    </button>);
+    return (React.createElement("button", Object.assign({ className: combinedClassName }, props), children));
 };
 export default BasicButton;

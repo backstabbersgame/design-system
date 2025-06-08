@@ -12,3 +12,4 @@ interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
 }
 export declare const Header: React.FC<HeaderProps>;
 export default Header;
+//# sourceMappingURL=Header.d.ts.map

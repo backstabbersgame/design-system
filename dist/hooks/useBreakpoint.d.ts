@@ -3,3 +3,4 @@ export interface UseBreakpointProps {
     currentBreakpoint: string;
 }
 export declare const useBreakpoint: () => UseBreakpointProps;
+//# sourceMappingURL=useBreakpoint.d.ts.map

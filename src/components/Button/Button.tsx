@@ -1,5 +1,4 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import clsx from 'clsx';
 import styles from './Button.module.scss';
 import { ArrowLeft, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import BasicButton, { BasicButtonProps } from '../../core/button';
@@ -31,14 +30,14 @@ export const Button: React.FC<ButtonProps> = ({
       {arrowLeft && (
         <ArrowLeft
           size={24}
-          className={clsx(styles.arrow)}
+          className={styles.arrow}
         />
       )}
       {children}
       {arrowRight && (
         <ArrowRight
           size={24}
-          className={clsx(styles.arrow)}
+          className={styles.arrow}
         />
       )}
     </BasicButton>

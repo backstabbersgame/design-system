@@ -13,8 +13,6 @@ import React from "react";
 import styles from "./index.module.scss";
 export const BasicHeader = (_a) => {
     var { children, className } = _a, props = __rest(_a, ["children", "className"]);
-    return (<header className={`${styles.header} ${className || ""}`} {...props}>
-      {children}
-    </header>);
+    return (React.createElement("header", Object.assign({ className: `${styles.header} ${className || ""}` }, props), children));
 };
 export default BasicHeader;

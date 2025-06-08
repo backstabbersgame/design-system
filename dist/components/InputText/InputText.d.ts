@@ -9,3 +9,4 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 export declare const InputText: React.FC<InputProps>;
 export default InputText;
+//# sourceMappingURL=InputText.d.ts.map

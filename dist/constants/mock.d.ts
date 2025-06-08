@@ -39,3 +39,4 @@ export declare const mockGames: {
     }[];
     buttonText: string;
 }[];
+//# sourceMappingURL=mock.d.ts.map

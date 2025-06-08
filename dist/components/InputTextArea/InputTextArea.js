@@ -28,34 +28,20 @@ export const InputTextArea = (_a) => {
         if (onChange)
             onChange(e);
     };
-    return (<div className={styles.container}>
-      {label && (<BasicLabel htmlFor={id}>
-          {label}
-          {required && <BasicLabel className={styles.required}></BasicLabel>}
-        </BasicLabel>)}
-      <div className={styles.field}>
-        <BasicTextArea ref={textareaRef} id={id} required={required} aria-describedby={hint ? `${id}-hint` : undefined} className={`${styles.textarea}
+    return (React.createElement("div", { className: styles.container },
+        label && (React.createElement(BasicLabel, { htmlFor: id },
+            label,
+            required && React.createElement(BasicLabel, { className: styles.required }))),
+        React.createElement("div", { className: styles.field },
+            React.createElement(BasicTextArea, Object.assign({ ref: textareaRef, id: id, required: required, "aria-describedby": hint ? `${id}-hint` : undefined, className: `${styles.textarea}
           ${error ? styles['user-invalid'] : ''}
-          ${className || ''}`} maxLength={max} value={value} onChange={handleChange} {...props}/>
-      </div>
-      <div className={styles['sub-field']}>
-        <span id={`${id}-hint`} className={error ? styles.error : styles.hint}>
-          {error ? error : hint || '\u00A0'}
-        </span>
-        {/* {hint && (
-          <span
-            id={`${id}-hint`}
-            className={styles.hint}
-          >
-            {hint}
-          </span>
-        )}
-        {error && <span className={styles.error}>{error}</span>} */}
-        <div className={styles.count}>
-          <span className={styles.current}>{charCount}</span>
-          <span className={styles.maximum}>/{max}</span>
-        </div>
-      </div>
-    </div>);
+          ${className || ''}`, maxLength: max, value: value, onChange: handleChange }, props))),
+        React.createElement("div", { className: styles['sub-field'] },
+            React.createElement("span", { id: `${id}-hint`, className: error ? styles.error : styles.hint }, error ? error : hint || '\u00A0'),
+            React.createElement("div", { className: styles.count },
+                React.createElement("span", { className: styles.current }, charCount),
+                React.createElement("span", { className: styles.maximum },
+                    "/",
+                    max)))));
 };
 export default InputTextArea;

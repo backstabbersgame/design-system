@@ -7,3 +7,4 @@ interface CarouselProps {
 }
 declare const Carousel: ({ games, autoPlay, interval, }: CarouselProps) => React.JSX.Element;
 export default Carousel;
+//# sourceMappingURL=Carousel.d.ts.map

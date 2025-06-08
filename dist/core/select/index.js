@@ -14,15 +14,10 @@ import styles from './index.module.scss';
 export const BasicSelect = (_a) => {
     var { options, placeholder, multiple = false, className } = _a, props = __rest(_a, ["options", "placeholder", "multiple", "className"]);
     const [selected, setSelected] = useState('');
-    return (<select className={`${styles.select}  ${selected === '' ? styles.placeholder : ''}
+    return (React.createElement("select", Object.assign({ className: `${styles.select}  ${selected === '' ? styles.placeholder : ''}
         ${multiple ? styles.hide : ''}
-        ${className || ''}`} multiple={multiple} onChange={(e) => setSelected(e.target.value)} defaultValue='' {...props}>
-      {!multiple && placeholder && (<option value={''} disabled>
-          {placeholder}
-        </option>)}
-      {options.map((option) => (<option key={option.value} value={option.value} disabled={option.disabled}>
-          {option.label}
-        </option>))}
-    </select>);
+        ${className || ''}`, multiple: multiple, onChange: (e) => setSelected(e.target.value), defaultValue: '' }, props),
+        !multiple && placeholder && (React.createElement("option", { value: '', disabled: true }, placeholder)),
+        options.map((option) => (React.createElement("option", { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
 };
 export default BasicSelect;

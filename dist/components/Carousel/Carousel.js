@@ -36,21 +36,15 @@ const Carousel = ({ games, autoPlay = true, interval = 5000, }) => {
             setActiveIndex(nextIndex);
         }
     };
-    return (<div className={styles.carouselWrapper} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onTouchStart={() => setIsPaused(true)} onTouchCancel={() => setIsPaused(false)} onTouchEnd={() => setIsPaused(false)}>
-      <div className={styles.carouselContainer} style={containerHeight ? { height: `${containerHeight}px` } : {}}>
-        <AnimatePresence mode='popLayout'>
-          <motion.div key={games[activeIndex].id} initial={{ opacity: 0, x: '50%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: '-50%' }} transition={{ duration: 0.4 }} className={styles.carouselItem}>
-            <GameCard id={games[activeIndex].id} images={games[activeIndex].images} details={games[activeIndex].details} buttonText={games[activeIndex].buttonText} name={games[activeIndex].name} onHeightChange={handleGameCardHeightChange}/>
-
-            {isNotMobileAndisNotTablet && (<button onClick={() => {
-                setIsPaused(true);
-                goToNext();
-            }} className={styles.carouselNext} style={containerHeight ? { height: `${containerHeight}px` } : {}} aria-label='Próximo item' onMouseEnter={() => setIsPaused(true)}>
-                <CaretRight size={32}/>
-              </button>)}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>);
+    return (React.createElement("div", { className: styles.carouselWrapper, onMouseEnter: () => setIsPaused(true), onMouseLeave: () => setIsPaused(false), onTouchStart: () => setIsPaused(true), onTouchCancel: () => setIsPaused(false), onTouchEnd: () => setIsPaused(false) },
+        React.createElement("div", { className: styles.carouselContainer, style: containerHeight ? { height: `${containerHeight}px` } : {} },
+            React.createElement(AnimatePresence, { mode: 'popLayout' },
+                React.createElement(motion.div, { key: games[activeIndex].id, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4 }, className: styles.carouselItem },
+                    React.createElement(GameCard, { id: games[activeIndex].id, images: games[activeIndex].images, details: games[activeIndex].details, buttonText: games[activeIndex].buttonText, name: games[activeIndex].name, onHeightChange: handleGameCardHeightChange }),
+                    isNotMobileAndisNotTablet && (React.createElement("button", { onClick: () => {
+                            setIsPaused(true);
+                            goToNext();
+                        }, className: styles.carouselNext, style: containerHeight ? { height: `${containerHeight}px` } : {}, "aria-label": 'Pr\u00F3ximo item', onMouseEnter: () => setIsPaused(true) },
+                        React.createElement(CaretRight, { size: 32 }))))))));
 };
 export default Carousel;

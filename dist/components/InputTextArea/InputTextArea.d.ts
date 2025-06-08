@@ -7,3 +7,4 @@ interface InputTextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaEl
 }
 export declare const InputTextArea: React.FC<InputTextAreaProps>;
 export default InputTextArea;
+//# sourceMappingURL=InputTextArea.d.ts.map

@@ -10,3 +10,4 @@ interface BasicNavProps extends React.HTMLAttributes<HTMLElement> {
 }
 export declare const BasicNav: React.FC<BasicNavProps>;
 export default BasicNav;
+//# sourceMappingURL=index.d.ts.map

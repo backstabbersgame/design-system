@@ -19,3 +19,4 @@ export interface GameData {
     details: GameDetail[];
     buttonText?: string;
 }
+//# sourceMappingURL=interfaces.d.ts.map

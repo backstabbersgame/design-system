@@ -12,3 +12,4 @@ type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & CommonProps &
 export type BasicButtonProps = ButtonProps | AnchorProps;
 export declare const BasicButton: React.FC<BasicButtonProps>;
 export default BasicButton;
+//# sourceMappingURL=index.d.ts.map

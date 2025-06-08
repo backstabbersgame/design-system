@@ -16,21 +16,16 @@ import BasicLabel from '../../core/label';
 import BasicInput from '../../core/input';
 export const InputText = (_a) => {
     var { label, hint, error, required = false, showIcon = false, id, className } = _a, props = __rest(_a, ["label", "hint", "error", "required", "showIcon", "id", "className"]);
-    return (<div className={styles.container}>
-      {label && (<BasicLabel htmlFor={id}>
-          {label}
-          {required && <BasicLabel className={styles.required}></BasicLabel>}
-        </BasicLabel>)}
-      <div className={styles.field}>
-        <BasicInput id={id} required={required} aria-describedby={hint ? `${id}-hint` : undefined} className={`${styles.input}
+    return (React.createElement("div", { className: styles.container },
+        label && (React.createElement(BasicLabel, { htmlFor: id },
+            label,
+            required && React.createElement(BasicLabel, { className: styles.required }))),
+        React.createElement("div", { className: styles.field },
+            React.createElement(BasicInput, Object.assign({ id: id, required: required, "aria-describedby": hint ? `${id}-hint` : undefined, className: `${styles.input}
           ${error ? styles['user-invalid'] : ''}
-          ${className || ''}`} {...props}/>
-        {showIcon && (<CheckCircle size={16} className={styles.icon}/>)}
-      </div>
-      <span id={`${id}-hint`} className={error ? styles.error : styles.hint}>
-        {error ? error : hint || '\u00A0'}
-      </span>
-    </div>);
+          ${className || ''}` }, props)),
+            showIcon && (React.createElement(CheckCircle, { size: 16, className: styles.icon }))),
+        React.createElement("span", { id: `${id}-hint`, className: error ? styles.error : styles.hint }, error ? error : hint || '\u00A0')));
 };
 export default InputText;
 // return (

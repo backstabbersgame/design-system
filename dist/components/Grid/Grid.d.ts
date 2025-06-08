@@ -6,3 +6,4 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 }
 declare const Grid: ({ children, layout, className, ...props }: GridProps) => React.JSX.Element;
 export default Grid;
+//# sourceMappingURL=Grid.d.ts.map

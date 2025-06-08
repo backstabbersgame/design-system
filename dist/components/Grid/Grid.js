@@ -13,8 +13,6 @@ import React from 'react';
 import styles from './Grid.module.scss';
 const Grid = (_a) => {
     var { children, layout, className } = _a, props = __rest(_a, ["children", "layout", "className"]);
-    return (<div className={`${styles.grid} ${styles[`grid-${layout}`]}  ${className || ''}`} {...props}>
-      {children}
-    </div>);
+    return (React.createElement("div", Object.assign({ className: `${styles.grid} ${styles[`grid-${layout}`]}  ${className || ''}` }, props), children));
 };
 export default Grid;

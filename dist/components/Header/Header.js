@@ -18,17 +18,11 @@ export const Header = ({ links, activeLink, onLogoClick, onMenuClick, onLinkClic
     const handleAccountClick = () => {
         onAccountClick === null || onAccountClick === void 0 ? void 0 : onAccountClick();
     };
-    return (<BasicHeader className={styles.header}>
-      <Image width={isMobile ? 116 : 145} height={isMobile ? 32 : 40} src='/images/solara-horizontal-light.svg' alt='Solara Studios Logo with light colors' onClick={handleLogoClick} style={{ cursor: 'pointer' }}/>
-
-      {isMobile ? (<button onClick={handleMenuClick} className={styles.list}>
-          <List size={24} className={styles.icon}/>
-        </button>) : (<div className={styles.side}>
-          <BasicNav className={styles.nav} links={links} mode='light' activeLink={activeLink} onLinkClick={onLinkClick}/>
-          <Button variant='cta' type='button' onClick={handleAccountClick}>
-            Minha Conta
-          </Button>
-        </div>)}
-    </BasicHeader>);
+    return (React.createElement(BasicHeader, { className: styles.header },
+        React.createElement(Image, { width: isMobile ? 116 : 145, height: isMobile ? 32 : 40, src: '/images/solara-horizontal-light.svg', alt: 'Solara Studios Logo with light colors', onClick: handleLogoClick, style: { cursor: 'pointer' } }),
+        isMobile ? (React.createElement("button", { onClick: handleMenuClick, className: styles.list },
+            React.createElement(List, { size: 24, className: styles.icon }))) : (React.createElement("div", { className: styles.side },
+            React.createElement(BasicNav, { className: styles.nav, links: links, mode: 'light', activeLink: activeLink, onLinkClick: onLinkClick }),
+            React.createElement(Button, { variant: 'cta', type: 'button', onClick: handleAccountClick }, "Minha Conta")))));
 };
 export default Header;

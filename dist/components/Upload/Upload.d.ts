@@ -8,3 +8,4 @@ type UploadProps = {
 };
 export declare const Upload: React.FC<UploadProps>;
 export default Upload;
+//# sourceMappingURL=Upload.d.ts.map

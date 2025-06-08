@@ -1,24 +1,29 @@
 {
   "name": "@backstabbersgame/design-system",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "author": "Solara Studios",
   "description": "Design System do Solara Studios",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "next dev",
-    "build": "rm -f tsconfig.tsbuildinfo && rm -rf dist && tsc -p . && cpx 'src/**/*.scss' dist & cpx 'src/styles/partials/**/*' dist/styles/partials",
+    "clean": "rm -f tsconfig.tsbuildinfo && rm -rf dist && rm -rf styles",
+    "build:ts": "tsc -p .",
+    "build:styles": "cpx 'src/components/**/*.module.scss' dist/components && cpx 'src/core/**/*.module.scss' dist/core && cpx 'src/styles/**/*' dist/styles",
+    "build:copy-root-styles": "cp -R dist/styles ./",
+    "build": "npm run clean && npm run build:ts && npm run build:styles && npm run build:copy-root-styles",
     "prepare": "npm run build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "files": [
+    "dist/",
+    "styles/"
+  ],
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
     "motion": "^12.5.0",
@@ -40,11 +45,11 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "clsx": "^2.1.1",
     "cpx": "^1.5.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.2",
     "eslint-plugin-storybook": "^0.11.4",
+    "npm-packlist": "^10.0.0",
     "sass": "^1.86.0",
     "sass-loader": "^16.0.5",
     "storybook": "^8.6.6",

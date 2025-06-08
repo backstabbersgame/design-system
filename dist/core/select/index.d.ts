@@ -10,3 +10,4 @@ type BasicSelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
 };
 export declare const BasicSelect: React.FC<BasicSelectProps>;
 export default BasicSelect;
+//# sourceMappingURL=index.d.ts.map

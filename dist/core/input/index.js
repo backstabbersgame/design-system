@@ -11,10 +11,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import styles from './index.module.scss';
-export const BasicLabel = (_a) => {
-    var { className, children } = _a, props = __rest(_a, ["className", "children"]);
-    return (<label className={`${styles.label} ${className || ''}`} {...props}>
-      {children}
-    </label>);
+export const BasicInput = (_a) => {
+    var { className } = _a, props = __rest(_a, ["className"]);
+    return (React.createElement("input", Object.assign({ className: `${styles.input} ${className || ''}` }, props)));
 };
-export default BasicLabel;
+export default BasicInput;
