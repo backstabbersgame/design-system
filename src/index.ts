@@ -1,3 +1,4 @@
+import './styles/index.scss';
 export { default as BasicButton } from './core/button/index';
 export { default as BasicHeader } from './core/header/index';
 export { default as BasicInput } from './core/input/index';

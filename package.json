@@ -1,6 +1,6 @@
 {
   "name": "@backstabbersgame/design-system",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "author": "Solara Studios",
   "description": "Design System do Solara Studios",
   "license": "MIT",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "tsc",
+    "build": "rm -f tsconfig.tsbuildinfo && rm -rf dist && tsc -p . && cpx 'src/**/*.scss' dist & cpx 'src/styles/partials/**/*' dist/styles/partials",
     "prepare": "npm run build",
     "start": "next start",
     "lint": "next lint",
