@@ -1,14 +1,19 @@
 {
   "name": "@solara-studios/design-system",
   "version": "1.0.0",
-  "private": true,
-  "main": "src/index.ts",
+  "author": "Solara Studios",
+  "description": "Design System do Solara Studios",
+  "license": "MIT",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "next dev",
-    "build": "rm -f tsconfig.tsbuildinfo && rm -rf dist && tsc -p . && cpx 'src/**/*.scss' dist & cpx 'src/styles/partials/**/*' dist/styles/partials",
-    "build:watch": "rm -f tsconfig.tsbuildinfo && rm -rf dist && tsc -p . --watch & cpx 'src/**/*.scss' dist --watch & cpx 'src/styles/**/*' dist/styles --watch",
+    "build": "tsc",
+    "prepare": "npm run build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
@@ -23,6 +28,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
     "@chromatic-com/storybook": "^3",
     "@eslint/eslintrc": "^3",
     "@storybook/addon-essentials": "^8.6.6",
@@ -42,12 +48,17 @@
     "sass": "^1.86.0",
     "sass-loader": "^16.0.5",
     "storybook": "^8.6.6",
+    "ts-loader": "^9.5.2",
     "typescript": "^5.7.0-dev.20241105",
-    "webpack": "^5.98.0"
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
