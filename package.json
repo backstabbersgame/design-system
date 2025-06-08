@@ -1,6 +1,6 @@
 {
   "name": "@backstabbersgame/design-system",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "author": "Solara Studios",
   "description": "Design System do Solara Studios",
   "license": "MIT",
@@ -22,7 +22,8 @@
   },
   "files": [
     "dist/",
-    "styles/"
+    "styles/",
+    "public/"
   ],
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
