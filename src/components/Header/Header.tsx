@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
       <Image
         width={isMobile ? 116 : 145}
         height={isMobile ? 32 : 40}
-        src={`${basePath}/images/aalors - horizontal - light.svg`}
+        src={`${basePath}/images/solara-horizontal-light.svg`}
         alt='Solara Studios Logo with light colors'
         onClick={handleLogoClick}
         style={{ cursor: 'pointer' }}
