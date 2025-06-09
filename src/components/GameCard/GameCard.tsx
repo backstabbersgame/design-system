@@ -45,6 +45,7 @@ const GameCard = ({
   const detailsRef = useRef<HTMLDivElement | null>(null);
   const imageRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   
   useEffect(() => {
     if (isNotMobileAndisNotTablet) {
@@ -98,7 +99,7 @@ const GameCard = ({
           <Image
             width={currentImage.width}
             height={currentImage.height}
-            src={currentImage.src}
+            src={`${basePath}${currentImage.src}`}
             alt={`Capa do jogo ${name}`}
             className={styles.image}
             priority={true}
@@ -124,7 +125,7 @@ const GameCard = ({
                   <Image
                     width={32}
                     height={32}
-                    src={detail.iconSrc}
+                    src={`${basePath}${detail.iconSrc}`}
                     alt={detail.iconAlt}
                   />
                   <div

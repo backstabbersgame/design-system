@@ -13,6 +13,7 @@ const GameCard = ({ id, images, details, buttonText = 'Detalhes do jogo', name, 
     const detailsRef = useRef(null);
     const imageRef = useRef(null);
     const containerRef = useRef(null);
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     useEffect(() => {
         if (isNotMobileAndisNotTablet) {
             const updateHeight = () => {
@@ -49,7 +50,7 @@ const GameCard = ({ id, images, details, buttonText = 'Detalhes do jogo', name, 
     return (React.createElement("div", { className: styles['game-container'], ref: containerRef },
         React.createElement("div", { className: styles['game-content'] },
             React.createElement(motion.div, { className: styles['game-image'], ref: imageRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
-                React.createElement(Image, { width: currentImage.width, height: currentImage.height, src: currentImage.src, alt: `Capa do jogo ${name}`, className: styles.image, priority: true, onLoad: () => {
+                React.createElement(Image, { width: currentImage.width, height: currentImage.height, src: `${basePath}${currentImage.src}`, alt: `Capa do jogo ${name}`, className: styles.image, priority: true, onLoad: () => {
                         if (containerRef.current && onHeightChange) {
                             onHeightChange(containerRef.current.offsetHeight);
                         }
@@ -58,7 +59,7 @@ const GameCard = ({ id, images, details, buttonText = 'Detalhes do jogo', name, 
                 details.map((detail, index) => (React.createElement(React.Fragment, null,
                     React.createElement("div", { key: `${name}-detail-${index}` },
                         React.createElement("div", { className: styles.detail },
-                            React.createElement(Image, { width: 32, height: 32, src: detail.iconSrc, alt: detail.iconAlt }),
+                            React.createElement(Image, { width: 32, height: 32, src: `${basePath}${detail.iconSrc}`, alt: detail.iconAlt }),
                             React.createElement("div", { style: {
                                     display: 'flex',
                                     flexDirection: 'column',
