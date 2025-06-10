@@ -2,6 +2,7 @@
 @use '@backstabbersgame/design-system/styles/partials/typography';
 @use '@backstabbersgame/design-system/styles/partials/spaces';
 @use '@backstabbersgame/design-system/styles/partials/breakpoints';
+
 .header {
   display: flex;
   align-items: center;
@@ -9,7 +10,6 @@
   margin-top: 16px;
   position: absolute;
   z-index: 1;
-  
 }
 
 .list {

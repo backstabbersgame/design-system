@@ -5,14 +5,12 @@
   width: 100%;
   margin: 0 auto;
   position: relative;
-  // overflow: hidden;
   height: fit-content;
 }
 
 .carouselContainer {
   position: relative;
-  // overflow: hidden;
- flex: 1;
+  flex: 1;
   min-height: 450px;
 }
 
@@ -24,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-height: auto;
+  height: auto;
 }
 
 .carouselNext {

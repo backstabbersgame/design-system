@@ -70,13 +70,13 @@ export const Header: React.FC<HeaderProps> = ({
             activeLink={activeLink}
             onLinkClick={onLinkClick}
           />
-          <Button
+          {/* <Button
             variant='cta'
             type='button'
             onClick={handleAccountClick}
           >
             Minha Conta
-          </Button>
+          </Button> */}
         </div>
       )}
     </BasicHeader>

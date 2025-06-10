@@ -76,6 +76,7 @@
 @media only screen and (min-width: breakpoints.$laptop-min) {
   .game-content {
     flex-direction: row;
+    gap: 0;
   }
 
   .detail {
@@ -107,7 +108,7 @@
     flex: none;
     width: fit-content;
     height: fit-content;
-    padding-left: 100px;
+    padding-left: 85px;
   }
 
   .detail {
