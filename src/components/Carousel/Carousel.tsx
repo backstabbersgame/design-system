@@ -88,6 +88,7 @@ const Carousel = ({
               buttonText={games[activeIndex].buttonText}
               name={games[activeIndex].name}
               onHeightChange={handleGameCardHeightChange}
+              link={games[activeIndex].link}
             />
 
             {isNotMobileAndisNotTablet && (

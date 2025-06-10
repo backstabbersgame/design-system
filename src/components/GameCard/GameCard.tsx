@@ -19,6 +19,7 @@ interface GameDetail {
 }
 interface GameCardProps {
   id: number;
+  link: string;
   images: {
     mobile: ResponsiveImage;
     desktop: ResponsiveImage;
@@ -31,6 +32,7 @@ interface GameCardProps {
 
 const GameCard = ({
   id,
+  link = '',
   images,
   details,
   buttonText = 'Detalhes do jogo',
@@ -46,7 +48,7 @@ const GameCard = ({
   const imageRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  
+
   useEffect(() => {
     if (isNotMobileAndisNotTablet) {
       const updateHeight = () => {
@@ -143,10 +145,10 @@ const GameCard = ({
               {index < details.length - 1 && <hr className={styles.line} />}
             </>
           ))}
-
           <Button
             variant='tertiary'
             className={styles.btn}
+            href={link}
           >
             {buttonText}
           </Button>

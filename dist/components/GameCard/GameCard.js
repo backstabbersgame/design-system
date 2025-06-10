@@ -4,7 +4,7 @@ import styles from './GameCard.module.scss';
 import { Button } from '../Button/Button';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { motion } from 'framer-motion';
-const GameCard = ({ id, images, details, buttonText = 'Detalhes do jogo', name, onHeightChange, }) => {
+const GameCard = ({ id, link = '', images, details, buttonText = 'Detalhes do jogo', name, onHeightChange, }) => {
     const { currentBreakpoint } = useBreakpoint();
     const isMobile = currentBreakpoint === 'mobile';
     const isTablet = currentBreakpoint === 'tablet';
@@ -68,6 +68,6 @@ const GameCard = ({ id, images, details, buttonText = 'Detalhes do jogo', name, 
                                 React.createElement("h4", { className: styles['detail-title'] }, detail.title),
                                 React.createElement("p", { className: styles['detail-p'] }, detail.description)))),
                     index < details.length - 1 && React.createElement("hr", { className: styles.line })))),
-                React.createElement(Button, { variant: 'tertiary', className: styles.btn }, buttonText)))));
+                React.createElement(Button, { variant: 'tertiary', className: styles.btn, href: link }, buttonText)))));
 };
 export default GameCard;

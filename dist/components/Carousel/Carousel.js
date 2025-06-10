@@ -40,7 +40,7 @@ const Carousel = ({ games, autoPlay = true, interval = 5000, }) => {
         React.createElement("div", { className: styles.carouselContainer, style: containerHeight ? { height: `${containerHeight}px` } : {} },
             React.createElement(AnimatePresence, { mode: 'popLayout' },
                 React.createElement(motion.div, { key: games[activeIndex].id, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4 }, className: styles.carouselItem },
-                    React.createElement(GameCard, { id: games[activeIndex].id, images: games[activeIndex].images, details: games[activeIndex].details, buttonText: games[activeIndex].buttonText, name: games[activeIndex].name, onHeightChange: handleGameCardHeightChange }),
+                    React.createElement(GameCard, { id: games[activeIndex].id, images: games[activeIndex].images, details: games[activeIndex].details, buttonText: games[activeIndex].buttonText, name: games[activeIndex].name, onHeightChange: handleGameCardHeightChange, link: games[activeIndex].link }),
                     isNotMobileAndisNotTablet && (React.createElement("button", { onClick: () => {
                             setIsPaused(true);
                             goToNext();

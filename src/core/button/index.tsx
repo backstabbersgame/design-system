@@ -31,6 +31,8 @@ export const BasicButton: React.FC<BasicButtonProps> = ({
       <a
         className={combinedClassName}
         href={href}
+        target='_blank'
+        rel='noopener noreferrer'
         {...(props as AnchorProps)}
       >
         {children}

@@ -15,7 +15,7 @@ export const BasicButton = (_a) => {
     var { children, className, href } = _a, props = __rest(_a, ["children", "className", "href"]);
     const combinedClassName = `${styles.button} ${className || ''}`;
     if (href) {
-        return (React.createElement("a", Object.assign({ className: combinedClassName, href: href }, props), children));
+        return (React.createElement("a", Object.assign({ className: combinedClassName, href: href, target: '_blank', rel: 'noopener noreferrer' }, props), children));
     }
     return (React.createElement("button", Object.assign({ className: combinedClassName }, props), children));
 };
