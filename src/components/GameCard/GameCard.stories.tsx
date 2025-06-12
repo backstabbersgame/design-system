@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { mockImages, mockDetails } from '../../constants/mock';
-import GameCard  from './GameCard';
+import { images, details } from '../../constants';
+import GameCard from './GameCard';
 
 const meta: Meta<typeof GameCard> = {
   title: 'Components/GameCard',
@@ -32,8 +32,8 @@ type Story = StoryObj<typeof GameCard>;
 
 export const Default: Story = {
   args: {
-    images: mockImages,
-    details: mockDetails,
+    images: images,
+    details: details,
     name: 'Backstabbers Expansion',
     buttonText: 'Detalhes do jogo',
   },

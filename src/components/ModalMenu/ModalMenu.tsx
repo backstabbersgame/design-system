@@ -12,36 +12,8 @@ import {
 import styles from './ModalMenu.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../Button/Button';
-
-export type SubItem = {
-  id: string;
-  label: string;
-  href: string;
-};
-
-export type ModalItem = {
-  id: string;
-  icon: React.ReactNode;
-  label: string;
-  href?: string;
-  hasSubMenu?: boolean;
-  subItems?: SubItem[];
-};
-
-export type ModalMenuProps = {
-  showHeader?: boolean;
-  title?: string;
-  isOpen: boolean;
-  onClose: () => void;
-  activeItem?: string;
-  onItemSelect: (id: string) => void;
-  footerButton?: { id?: string; label: string; onClick: () => void };
-  logoutButton?: { id?: string; label: string; onClick: () => void };
-  customItems?: ModalItem[];
-  openSubMenu?: string;
-  onToggleSubMenu?: (id?: string) => void;
-  onNavigate?: (href: string) => void;
-};
+import { ModalItem, ModalMenuProps, SubItem } from '../../types/modal';
+import { menuItems } from '../../constants';
 
 const ModalMenu: React.FC<ModalMenuProps> = ({
   showHeader = true,
@@ -57,66 +29,39 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
   onToggleSubMenu,
   onNavigate,
 }) => {
-  const defaultItems: ModalItem[] = [
-    {
-      id: 'inicio',
-      label: 'Início',
-      icon: <House size={24} />,
-      href: '/',
-    },
-    {
-      id: 'jogos',
-      label: 'Jogos',
-      icon: <Rocket size={24} />,
-      href: '/jogos',
-      hasSubMenu: true,
-      subItems: [
-        { id: 'jogo1', label: 'Jogo 1', href: '/jogos/jogo-1' },
-        { id: 'jogo2', label: 'Jogo 2', href: '/jogos/jogo-2' },
-        { id: 'jogo3', label: 'Jogo 3', href: '/jogos/jogo-3' },
-      ],
-    },
-    {
-      id: 'lojinha',
-      label: 'Lojinha',
-      icon: <ShoppingCart size={24} />,
-      href: '/lojinha',
-    },
-    {
-      id: 'contato',
-      label: 'Contato',
-      icon: <Chats size={24} />,
-      href: '/contato',
-    },
-  ];
-
+  const defaultItems = menuItems;
   const items = customItems || defaultItems;
-
-  const handleNavigation = (href: string) => {
-    if (onNavigate) {
-      onNavigate(href);
-    } else {
-      window.location.href = href;
-    }
-  };
 
   const isItemActive = (item: ModalItem) =>
     (item.id === activeItem && openSubMenu !== item.id) ||
-    item.subItems?.some((subItem) => subItem.id === activeItem);
+    item.subItems?.some((sub) => sub.id === activeItem);
+
+  const scrollOrNavigate = (href?: string) => {
+    if (!href) return;
+    if (href.startsWith('#')) {
+      const target = document.getElementById(href.slice(1));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      onNavigate?.(href);
+      onClose();
+    } else {
+      onNavigate ? onNavigate(href) : (window.location.href = href);
+      onClose();
+    }
+  };
 
   const handleItemClick = (item: ModalItem) => {
     if (item.hasSubMenu) {
       onToggleSubMenu?.(openSubMenu === item.id ? undefined : item.id);
       onItemSelect(item.id);
     } else if (item.href) {
-      handleNavigation(item.href);
+      scrollOrNavigate(item.href);
       onItemSelect(item.id);
       onToggleSubMenu?.(undefined);
     }
   };
 
   const handleSubItemClick = (subItem: SubItem) => {
-    handleNavigation(subItem.href);
+    scrollOrNavigate(subItem.href);
     onItemSelect(subItem.id);
     onToggleSubMenu?.(undefined);
   };
@@ -125,36 +70,100 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
     if (customAction) {
       customAction();
     } else {
-      handleNavigation(href);
+      scrollOrNavigate(href);
     }
     onClose();
+  };
+
+  const renderSubMenu = (item: ModalItem) => (
+    <AnimatePresence>
+      {openSubMenu === item.id && (
+        <motion.ul
+          id={`submenu-${item.id}`}
+          className={styles.submenu}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {item.subItems?.map((subItem) => (
+            <li
+              key={subItem.id}
+              className={`${styles['submenu-item']} ${
+                activeItem === subItem.id ? styles.active : ''
+              }`}
+            >
+              <button
+                type='button'
+                onClick={() => handleSubItemClick(subItem)}
+                className={styles['submenu-button']}
+              >
+                {subItem.label}
+              </button>
+            </li>
+          ))}
+        </motion.ul>
+      )}
+    </AnimatePresence>
+  );
+
+  const renderFooter = () => {
+    if (footerButton && !logoutButton) {
+      return (
+        <Button
+          variant='cta'
+          className={styles['button-footer']}
+          id={footerButton.id}
+          onClick={() => handleButtonAction('/conta', footerButton.onClick)}
+        >
+          {footerButton.label}
+        </Button>
+      );
+    }
+    if (logoutButton && !footerButton) {
+      return (
+        <button
+          className={styles['button-logout']}
+          id={logoutButton.id}
+          onClick={() => handleButtonAction('/logout', logoutButton.onClick)}
+          type='button'
+        >
+          <SignOut size={20} /> {logoutButton.label}
+        </button>
+      );
+    }
+    return null;
   };
 
   return (
     <AnimatePresence>
       {isOpen ? (
         <div className={styles.overlay}>
-          <motion.div
+          <motion.aside
             className={styles.modal}
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             exit={{ opacity: 0, x: '100%' }}
+            role='dialog'
+            aria-modal='true'
+            aria-label={title}
           >
             {showHeader && (
-              <div className={styles.header}>
+              <header className={styles.header}>
                 <h2 className={styles.title}>{title}</h2>
                 <button
                   onClick={onClose}
                   className={styles['button-close']}
                   aria-label='Fechar menu'
+                  type='button'
                 >
                   <X
                     size={24}
                     className={styles.close}
                   />
                 </button>
-              </div>
+              </header>
             )}
 
             <nav className={styles.nav}>
@@ -162,19 +171,27 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                 {items.map((item) => (
                   <React.Fragment key={item.id}>
                     <li
-                      className={`${styles.item} ${
-                        isItemActive(item) ? styles.active : ''
-                      } ${
+                      className={[
+                        styles.item,
+                        isItemActive(item) ? styles.active : '',
                         item.hasSubMenu && openSubMenu === item.id
                           ? styles['submenu-open']
-                          : ''
-                      }`}
+                          : '',
+                      ].join(' ')}
                     >
                       <button
-                        className={`${styles['button-item']} ${
-                          isItemActive(item) ? styles.active : ''
-                        }`}
+                        type='button'
+                        className={[
+                          styles['button-item'],
+                          isItemActive(item) ? styles.active : '',
+                        ].join(' ')}
                         onClick={() => handleItemClick(item)}
+                        aria-expanded={
+                          !!item.hasSubMenu && openSubMenu === item.id
+                        }
+                        aria-controls={
+                          item.hasSubMenu ? `submenu-${item.id}` : undefined
+                        }
                       >
                         <span className={styles['icon-label']}>
                           {item.icon}
@@ -190,63 +207,15 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                           </span>
                         )}
                       </button>
-
-                      {item.hasSubMenu && openSubMenu === item.id && (
-                        <AnimatePresence>
-                          <motion.ul
-                            className={styles.submenu}
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            {item.subItems?.map((subItem) => (
-                              <li
-                                key={subItem.id}
-                                className={`${styles['submenu-item']} ${
-                                  activeItem === subItem.id ? styles.active : ''
-                                }`}
-                                onClick={() => handleSubItemClick(subItem)}
-                              >
-                                {subItem.label}
-                              </li>
-                            ))}
-                          </motion.ul>
-                        </AnimatePresence>
-                      )}
+                      {item.hasSubMenu && renderSubMenu(item)}
                     </li>
                     <hr className={styles.line} />
                   </React.Fragment>
                 ))}
               </ul>
             </nav>
-            <div className={styles['modal-footer']}>
-              {footerButton && !logoutButton && (
-                <Button
-                  variant='cta'
-                  className={styles['button-footer']}
-                  id={footerButton.id}
-                  onClick={() =>
-                    handleButtonAction('/conta', footerButton.onClick)
-                  }
-                >
-                  {footerButton.label}
-                </Button>
-              )}
-
-              {logoutButton && !footerButton && (
-                <button
-                  className={styles['button-logout']}
-                  id={logoutButton.id}
-                  onClick={() =>
-                    handleButtonAction('/logout', logoutButton.onClick)
-                  }
-                >
-                  <SignOut size={20} /> {logoutButton.label}
-                </button>
-              )}
-            </div>
-          </motion.div>
+            <footer className={styles['modal-footer']}>{renderFooter()}</footer>
+          </motion.aside>
         </div>
       ) : null}
     </AnimatePresence>

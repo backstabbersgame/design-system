@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import './Carousel';
-import { mockGames } from '../../constants/mock';
+import { games as gamesMock } from '../../constants';
 import Carousel from './Carousel';
 
 const meta: Meta<typeof Carousel> = {
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof Carousel>;
 
 export const Default: Story = {
   args: {
-    games: mockGames,
+    games: gamesMock,
     autoPlay: true,
     interval: 5000,
   },
@@ -37,14 +37,14 @@ export const Default: Story = {
 
 export const AutoPlayDisabled: Story = {
   args: {
-    games: mockGames,
+    games: gamesMock,
     autoPlay: false,
   },
 };
 
 export const SingleItem: Story = {
   args: {
-    games: [mockGames[0]], 
+    games: [gamesMock[0]],
     autoPlay: false,
   },
 };

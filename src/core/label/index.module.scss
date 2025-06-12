@@ -1,6 +1,11 @@
-@use '@backstabbersgame/design-system/styles/partials/colors';
-@use '@backstabbersgame/design-system/styles/partials/typography';
-@use '@backstabbersgame/design-system/styles/partials/spaces';
+// @use '@backstabbersgame/design-system/styles/partials/colors';
+// @use '@backstabbersgame/design-system/styles/partials/typography';
+// @use '@backstabbersgame/design-system/styles/partials/spaces';
+
+@use '../../styles/partials/colors' as colors;
+@use '../../styles/partials/typography' as typography;
+// @use '../../styles/partials/spaces' as spaces;
+// @use '../../styles/partials/breakpoints' as breakpoints;
 
 .label {
   color: colors.$neutral-600;

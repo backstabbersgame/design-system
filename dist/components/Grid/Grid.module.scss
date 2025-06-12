@@ -1,4 +1,8 @@
-@use '@backstabbersgame/design-system/styles/partials/breakpoints' as breakpoint;
+// @use '@backstabbersgame/design-system/styles/partials/breakpoints' as breakpoint;
+// @use '../../styles/partials/colors' as colors;
+// @use '../../styles/partials/typography' as typography;
+// @use '../../styles/partials/spaces' as spaces;
+@use '../../styles/partials/breakpoints' as breakpoint;
 
 .grid {
   display: grid;

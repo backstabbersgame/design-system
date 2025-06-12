@@ -1,6 +1,6 @@
-@use 'partials/colors' as colors;
-@use 'partials/typography' as typography;
-@use 'partials/spaces' as spaces;
+@use './partials/colors' as colors;
+@use './partials/typography' as typography;
+@use './partials/spaces' as spaces;
 
 * {
   margin: 0;

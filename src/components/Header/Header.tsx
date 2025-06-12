@@ -6,15 +6,9 @@ import Button from '../Button/Button';
 import styles from './Header.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { List } from '@phosphor-icons/react/dist/ssr';
+import { Link } from '../../types/link';
+import { HeaderProps } from '../../types/header';
 
-interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-  links: { name: string; href: string }[];
-  activeLink?: string;
-  onLogoClick?: () => void;
-  onMenuClick?: () => void;
-  onLinkClick?: (href: string) => void;
-  onAccountClick?: () => void;
-}
 
 export const Header: React.FC<HeaderProps> = ({
   links,
@@ -28,32 +22,26 @@ export const Header: React.FC<HeaderProps> = ({
   const { currentBreakpoint } = useBreakpoint();
   const isMobile = currentBreakpoint === 'mobile';
 
-  const handleLogoClick = () => {
-    onLogoClick?.();
-  };
-
-  const handleMenuClick = () => {
-    onMenuClick?.();
-  };
-
-  const handleAccountClick = () => {
-    onAccountClick?.();
-  };
-
   return (
     <BasicHeader className={styles.header}>
-      <Image
-        width={isMobile ? 116 : 145}
-        height={isMobile ? 32 : 40}
-        src={`${basePath}/images/solara-horizontal-light.svg`}
-        alt='Solara Studios Logo with light colors'
-        onClick={handleLogoClick}
+      <div
+        onClick={onLogoClick}
+        tabIndex={0}
+        role='button'
+        aria-label='Ir para início'
         style={{ cursor: 'pointer' }}
-      />
-
+      >
+        <Image
+          width={isMobile ? 116 : 145}
+          height={isMobile ? 32 : 40}
+          src={`${basePath}/images/solara-horizontal-light.svg`}
+          alt='Solara Studios Logo com cores claras'
+        />
+      </div>
       {isMobile ? (
         <button
-          onClick={handleMenuClick}
+          onClick={onMenuClick}
+          aria-label='Abrir menu'
           className={styles.list}
         >
           <List
@@ -64,16 +52,15 @@ export const Header: React.FC<HeaderProps> = ({
       ) : (
         <div className={styles.side}>
           <BasicNav
-            className={styles.nav}
             links={links}
-            mode='light'
             activeLink={activeLink}
             onLinkClick={onLinkClick}
+            mode='light'
           />
           {/* <Button
             variant='cta'
             type='button'
-            onClick={handleAccountClick}
+            onClick={onAccountClick}
           >
             Minha Conta
           </Button> */}

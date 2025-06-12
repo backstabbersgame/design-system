@@ -1,4 +1,44 @@
-export const mockImages = {
+import React from 'react';
+import { Link } from '../types/link';
+import { ModalItem } from '../types/modal';
+import { House, Rocket, UsersThree, Newspaper } from '@phosphor-icons/react';
+import { GameData } from '../types/interfaces';
+
+export const links: Link[] = [
+  { name: 'Início', href: '#inicio' },
+  { name: 'Jogos', href: '#jogos' },
+  { name: 'Sobre', href: '#sobre' },
+  { name: 'Newsletter', href: '#newsletter' },
+];
+
+export const menuItems: ModalItem[] = [
+  {
+    id: 'inicio',
+    label: 'Início',
+    icon: <House size={24} />,
+    href: '#inicio',
+  },
+  {
+    id: 'jogos',
+    label: 'Jogos',
+    icon: <Rocket size={24} />,
+    href: '#jogos',
+  },
+  {
+    id: 'sobre',
+    label: 'Sobre',
+    icon: <UsersThree size={24} />,
+    href: '#sobre',
+  },
+  {
+    id: 'newsletter',
+    label: 'Newsletter',
+    icon: <Newspaper size={24} />,
+    href: '#newsletter',
+  },
+];
+
+export const images = {
   mobile: {
     src: '/images/backstabbers-expansion-mobile.png',
     width: 320,
@@ -11,7 +51,7 @@ export const mockImages = {
   },
 };
 
-export const mockDetails = [
+export const details = [
   {
     iconSrc: '/images/sword.svg',
     iconAlt: 'Ícone de vendas',
@@ -35,15 +75,16 @@ export const mockDetails = [
   },
 ];
 
-export const mockGames = [
+export const games: GameData[] = [
   {
     id: 1,
     name: 'Backstabbers Expansion',
     images: {
-      ...mockImages,
+      ...images,
     },
-    details: [...mockDetails],
+    details: [...details],
     buttonText: 'Detalhes do jogo',
+    link: ''
   },
   {
     id: 2,
@@ -60,7 +101,8 @@ export const mockGames = [
         height: 394,
       },
     },
-    details: [...mockDetails],
+    details: [...details],
     buttonText: 'Detalhes do jogo',
+    link: ''
   },
 ];

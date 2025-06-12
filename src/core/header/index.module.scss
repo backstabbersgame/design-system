@@ -1,7 +1,11 @@
-@use '@backstabbersgame/design-system/styles/partials/colors';
-@use '@backstabbersgame/design-system/styles/partials/typography';
-@use '@backstabbersgame/design-system/styles/partials/spaces';
-@use '@backstabbersgame/design-system/styles/partials/breakpoints';
+// @use '@backstabbersgame/design-system/styles/partials/colors';
+// @use '@backstabbersgame/design-system/styles/partials/typography';
+// @use '@backstabbersgame/design-system/styles/partials/spaces';
+// @use '@backstabbersgame/design-system/styles/partials/breakpoints';
+
+@use '../../styles/partials/colors' as colors;
+@use '../../styles/partials/typography' as typography;
+@use '../../styles/partials/breakpoints' as breakpoints;
 
 .header {
   font-family: typography.$base-font-family;
@@ -23,7 +27,6 @@
     padding: 16px 40px;
   }
 }
-
 
 @media only screen and (min-width: breakpoints.$laptop-min) {
   .header {
