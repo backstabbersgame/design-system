@@ -54,7 +54,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
           required={required}
           aria-describedby={hint ? `${id}-hint` : undefined}
           className={`${styles.textarea}
-          ${error ? styles['user-invalid'] : ''}
+          ${error ? styles['user-invalid'] : undefined}
           ${className || ''}`}
           maxLength={max}
           value={value}

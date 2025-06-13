@@ -34,7 +34,7 @@ export const InputTextArea = (_a) => {
             required && React.createElement(BasicLabel, { className: styles.required }))),
         React.createElement("div", { className: styles.field },
             React.createElement(BasicTextArea, Object.assign({ ref: textareaRef, id: id, required: required, "aria-describedby": hint ? `${id}-hint` : undefined, className: `${styles.textarea}
-          ${error ? styles['user-invalid'] : ''}
+          ${error ? styles['user-invalid'] : undefined}
           ${className || ''}`, maxLength: max, value: value, onChange: handleChange }, props))),
         React.createElement("div", { className: styles['sub-field'] },
             React.createElement("span", { id: `${id}-hint`, className: error ? styles.error : styles.hint }, error ? error : hint || '\u00A0'),
