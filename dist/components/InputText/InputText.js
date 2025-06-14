@@ -21,8 +21,8 @@ export const InputText = (_a) => {
             label,
             required && React.createElement(BasicLabel, { className: styles.required }))),
         React.createElement("div", { className: styles.field },
-            React.createElement(BasicInput, Object.assign({ id: id, required: required, "aria-describedby": hint ? `${id}-hint` : styles.input, className: `${styles.input}
-          ${error ? styles['user-invalid'] : styles.input}
+            React.createElement(BasicInput, Object.assign({ id: id, required: required, "aria-describedby": hint ? `${id}-hint` : undefined, className: `${styles['basic-input']}
+          ${error ? styles['user-invalid'] : undefined}
           ${className || ''}` }, props)),
             showIcon && (React.createElement(CheckCircle, { size: 16, className: styles.icon }))),
         React.createElement("span", { id: `${id}-hint`, className: error ? styles.error : styles.hint }, error ? error : hint || '\u00A0')));

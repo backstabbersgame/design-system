@@ -51,6 +51,13 @@
   line-height: typography.$line-height-100;
   color: colors.$feedback-danger-700;
 }
+
+.user-invalid {
+  border: 1px solid colors.$feedback-danger-500;
+  outline: 1px solid colors.$feedback-danger-500;
+  box-shadow: 0px 0px 4px 0px colors.$neutral-0;
+}
+
 // .select-wrapper {
 //   display: flex;
 //   flex-direction: column;
