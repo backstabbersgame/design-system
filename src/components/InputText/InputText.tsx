@@ -35,9 +35,9 @@ export const InputText: React.FC<InputProps> = ({
         <BasicInput
           id={id}
           required={required}
-          aria-describedby={hint ? `${id}-hint` : undefined}
+          aria-describedby={hint ? `${id}-hint` : styles.input}
           className={`${styles.input}
-          ${error ? styles['user-invalid'] : undefined}
+          ${error ? styles['user-invalid'] : styles.input}
           ${className || ''}`}
           {...props}
         />
