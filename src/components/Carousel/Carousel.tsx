@@ -83,6 +83,7 @@ const Carousel = ({
           >
             <GameCard
               id={games[activeIndex].id}
+              key={games[activeIndex].id}
               images={games[activeIndex].images}
               details={games[activeIndex].details}
               buttonText={games[activeIndex].buttonText}
