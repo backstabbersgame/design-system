@@ -1,12 +1,8 @@
-// @use '@backstabbersgame/design-system/styles/partials/colors';
-// @use '@backstabbersgame/design-system/styles/partials/typography';
-// @use '@backstabbersgame/design-system/styles/partials/spaces';
-// @use '@backstabbersgame/design-system/styles/partials/breakpoints';
-
 @use '../../styles/partials/colors' as colors;
 @use '../../styles/partials/typography' as typography;
 @use '../../styles/partials/spaces' as spaces;
 @use '../../styles/partials/breakpoints' as breakpoints;
+
 .overlay {
   position: fixed;
   top: 0;
@@ -38,6 +34,37 @@
   background-color: colors.$neutral-0;
   border-bottom: 1px solid colors.$neutral-0;
   box-shadow: 0px 4px 6px 0px #00000005;
+}
+
+.header-games {
+  height: 60px;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: colors.$neutral-0;
+  border-bottom: 1px solid colors.$neutral-0;
+  box-shadow: 0px 4px 6px 0px #00000005;
+}
+
+.texts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+.title-game {
+  font-size: typography.$font-size-12;
+  font-family: typography.$paragraph-font;
+  font-weight: typography.$font-weight-semi-bold;
+  color: colors.$neutral-500;
+  padding: 0;
+  margin: 0;
 }
 
 .title {

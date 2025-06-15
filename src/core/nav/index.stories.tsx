@@ -21,8 +21,8 @@ const Template: StoryFn<typeof BasicNav> = (args) => {
   return <BasicNav {...args} />;
 };
 
-export const Default = Template.bind({});
-Default.args = {
+export const Light = Template.bind({});
+Light.args = {
   links: [
     { name: 'Início', href: '/' },
     { name: 'Jogos', href: '/about' },

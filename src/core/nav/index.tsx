@@ -17,7 +17,6 @@ export const BasicNav: React.FC<BasicNavProps> = ({
     >
       {links.map(({ name, href }) => (
         <a
-          key={href}
           href={href}
           className={`${styles.link} ${
             activeLink === href ? styles.selected : ''

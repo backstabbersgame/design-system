@@ -1,23 +1,44 @@
-// @use '@backstabbersgame/design-system/styles/partials/colors';
-// @use '@backstabbersgame/design-system/styles/partials/typography';
-// @use '@backstabbersgame/design-system/styles/partials/spaces';
-// @use '@backstabbersgame/design-system/styles/partials/breakpoints';
 @use '../../styles/partials/colors' as colors;
 @use '../../styles/partials/typography' as typography;
 @use '../../styles/partials/spaces' as spaces;
 @use '../../styles/partials/breakpoints' as breakpoints;
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 16px;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
+  background-color: rgba(colors.$neutral-0, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 4px;
+  border: 1px solid rgba(colors.$neutral-0, 0.25);
+  width: 88vw;
+}
+
+.header-games {
+  position: fixed;
+  z-index: 10;
+  border: 1px solid colors.$neutral-50;
+  background-color: colors.$neutral-0;
+  height: 60px;
+  box-shadow: 0px 4px 6px 0px #00000005;
+}
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .list {
   background-color: transparent;
   border: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     cursor: pointer;
@@ -29,34 +50,40 @@
   text-shadow: 0px 0px 8px 0px #00000040;
 }
 
-@media only screen and (min-width: breakpoints.$tablet-min) and (max-width: breakpoints.$tablet-max) {
-  .side {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
+.icon-games {
+  fill: colors.$primary-500;
 }
+
+// @media only screen and (min-width: breakpoints.$tablet-min) and (max-width: breakpoints.$tablet-max) {
+//   .side {
+//     display: flex;
+//     align-items: center;
+//     gap: 24px;
+//   }
+// }
 @media only screen and (min-width: breakpoints.$laptop-min) and (max-width: breakpoints.$laptop-max) {
-  .header {
-    margin-top: 24px;
+  .header-games {
+    background-color: rgba(colors.$neutral-0, 0.65);
+    border-radius: 4px;
+    border: 1px solid #0C032B4D;
+    backdrop-filter: blur(12px);
   }
 
   .side {
     display: flex;
     align-items: center;
-    gap: 24px;
+    // gap: 24px;
   }
 }
 
-@media only screen and (min-width: breakpoints.$desktop-min) {
-  .header {
-    margin-top: 24px;
-  }
+// @media only screen and (min-width: breakpoints.$desktop-min) {
+//   .header {
+//     margin-top: 24px;
+//   }
 
-  .side {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-}
-
+//   .side {
+//     display: flex;
+//     align-items: center;
+//     gap: 24px;
+//   }
+// }

@@ -17,6 +17,8 @@ import { menuItems } from '../../constants';
 
 const ModalMenu: React.FC<ModalMenuProps> = ({
   showHeader = true,
+  isGame,
+  gameTitle,
   title = 'Menu',
   isOpen,
   onClose,
@@ -150,8 +152,15 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
             aria-label={title}
           >
             {showHeader && (
-              <header className={styles.header}>
-                <h2 className={styles.title}>{title}</h2>
+              <header
+                className={isGame ? styles['header-games'] : styles.header}
+              >
+                <div className={styles.texts}>
+                  {isGame && (
+                    <p className={styles['title-game']}>{gameTitle}</p>
+                  )}
+                  <h2 className={styles.title}>{title}</h2>
+                </div>
                 <button
                   onClick={onClose}
                   className={styles['button-close']}

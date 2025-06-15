@@ -1,5 +1,8 @@
+import { Link } from "./link";
+
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-  links: { name: string; href: string }[];
+  variant: 'solara' | 'backstabbers' | 'ordem' | 'rebeliao' | 'armada';
+  links: Link[];
   activeLink?: string;
   onLogoClick?: () => void;
   onMenuClick?: () => void;

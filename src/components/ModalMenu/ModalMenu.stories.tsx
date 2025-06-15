@@ -53,6 +53,13 @@ export const Default = {
   render: Template,
 };
 
+export const DefaultGame = {
+  render: Template,
+  args: {
+    isGame: true,
+    gameTitle: 'BACKSTABBERS',
+  },
+};
 
 export const WithFooterButtonAccount = {
   render: Template,

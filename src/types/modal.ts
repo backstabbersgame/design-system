@@ -15,6 +15,8 @@ export type ModalItem = {
 
 export type ModalMenuProps = {
   showHeader?: boolean;
+  isGame?: boolean;
+  gameTitle?: string;
   title?: string;
   isOpen: boolean;
   onClose: () => void;

@@ -4,7 +4,7 @@ import styles from './ModalMenu.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../Button/Button';
 import { menuItems } from '../../constants';
-const ModalMenu = ({ showHeader = true, title = 'Menu', isOpen, onClose, activeItem, onItemSelect, footerButton, logoutButton, customItems, openSubMenu, onToggleSubMenu, onNavigate, }) => {
+const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpen, onClose, activeItem, onItemSelect, footerButton, logoutButton, customItems, openSubMenu, onToggleSubMenu, onNavigate, }) => {
     const defaultItems = menuItems;
     const items = customItems || defaultItems;
     const isItemActive = (item) => {
@@ -71,8 +71,10 @@ const ModalMenu = ({ showHeader = true, title = 'Menu', isOpen, onClose, activeI
     };
     return (React.createElement(AnimatePresence, null, isOpen ? (React.createElement("div", { className: styles.overlay },
         React.createElement(motion.aside, { className: styles.modal, initial: { opacity: 0, x: '100%' }, animate: { opacity: 1, x: 0 }, transition: { duration: 0.3, ease: 'easeInOut' }, exit: { opacity: 0, x: '100%' }, role: 'dialog', "aria-modal": 'true', "aria-label": title },
-            showHeader && (React.createElement("header", { className: styles.header },
-                React.createElement("h2", { className: styles.title }, title),
+            showHeader && (React.createElement("header", { className: isGame ? styles['header-games'] : styles.header },
+                React.createElement("div", { className: styles.texts },
+                    isGame && (React.createElement("p", { className: styles['title-game'] }, gameTitle)),
+                    React.createElement("h2", { className: styles.title }, title)),
                 React.createElement("button", { onClick: onClose, className: styles['button-close'], "aria-label": 'Fechar menu', type: 'button' },
                     React.createElement(X, { size: 24, className: styles.close })))),
             React.createElement("nav", { className: styles.nav },
