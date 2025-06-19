@@ -116,6 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
       ) : (
         <div className={styles.side}>
           <BasicNav
+            variant={variant}
             links={links}
             activeLink={activeLink}
             onLinkClick={onLinkClick}

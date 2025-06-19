@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 const breakpoints = {
     mobile: '767px',
     tablet: {
-        min: '768px',
+        min: '819px',
         max: '1032px',
     },
     laptop: {
@@ -57,6 +57,6 @@ export const useBreakpoint = () => {
     }, []);
     return {
         windowWidth,
-        currentBreakpoint
+        currentBreakpoint,
     };
 };

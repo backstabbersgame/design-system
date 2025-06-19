@@ -1,12 +1,5 @@
-// @use '@backstabbersgame/design-system/styles/partials/colors';
-// @use '@backstabbersgame/design-system/styles/partials/typography';
-// @use '@backstabbersgame/design-system/styles/partials/spaces';
-
 @use '../../styles/partials/colors' as colors;
 @use '../../styles/partials/typography' as typography;
-// @use '../../styles/partials/spaces' as spaces;
-// @use '../../styles/partials/breakpoints' as breakpoints;
-
 
 .nav {
   display: flex;
@@ -45,6 +38,10 @@
     background-color: colors.$primary-500;
     transform: scaleX(1);
   }
+}
+
+.nonSolara::after {
+  height: 6px;
 }
 
 .light {

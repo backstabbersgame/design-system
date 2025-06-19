@@ -12,9 +12,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import styles from './index.module.scss';
 export const BasicNav = (_a) => {
-    var { links, mode = 'light', activeLink, onLinkClick, className } = _a, props = __rest(_a, ["links", "mode", "activeLink", "onLinkClick", "className"]);
+    var { variant = 'solara', links, mode = 'light', activeLink, onLinkClick, className } = _a, props = __rest(_a, ["variant", "links", "mode", "activeLink", "onLinkClick", "className"]);
     return (React.createElement("nav", Object.assign({ className: `${styles.nav} ${className || ''}` }, props), links.map(({ name, href }) => (React.createElement("a", { key: href, href: href, className: `${styles.link} ${activeLink === href ? styles.selected : ''} 
-          ${mode === 'light' ? styles.light : styles.dark}`, onClick: (e) => {
+          ${mode === 'light' ? styles.light : styles.dark}
+          ${variant !== 'solara' ? styles.nonSolara : ''}`, onClick: (e) => {
             if (href.startsWith('#')) {
                 e.preventDefault();
             }

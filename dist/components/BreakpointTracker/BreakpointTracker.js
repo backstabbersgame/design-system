@@ -4,7 +4,7 @@ import { useBreakpoint } from '../../hooks/useBreakpoint';
 const breakpoint = {
     mobile: '767px',
     tablet: {
-        min: '768px',
+        min: '819px',
         max: '1032px',
     },
     laptop: {

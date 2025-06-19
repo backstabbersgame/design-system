@@ -4,6 +4,7 @@ export { default as BasicInput } from './core/input/index';
 export { default as BasicNav } from './core/nav/index';
 export { default as BasicLabel } from './core/label/index';
 export { default as BreakpointTracker } from './components/BreakpointTracker/BreakpointTracker';
+export { default as ButtonSpecial } from './components/ButtonSpecial/ButtonSpecial';
 export { default as Button } from './components/Button/Button';
 export { default as Carousel } from './components/Carousel/Carousel';
 export { default as GameCard } from './components/GameCard/GameCard';

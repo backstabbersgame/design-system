@@ -1,3 +1,9 @@
+export type FooterItem = {
+    id: string;
+    icon: React.ReactNode;
+    label: string;
+    href?: string;
+};
 export type SubItem = {
     id: string;
     label: string;
@@ -20,6 +26,12 @@ export type ModalMenuProps = {
     onClose: () => void;
     activeItem?: string;
     onItemSelect: (id: string) => void;
+    customItems?: ModalItem[];
+    openSubMenu?: string;
+    onToggleSubMenu?: (id?: string) => void;
+    onNavigate?: (href: string) => void;
+    isSubpage?: boolean;
+    customFooterItems?: FooterItem[];
     footerButton?: {
         id?: string;
         label: string;
@@ -30,9 +42,5 @@ export type ModalMenuProps = {
         label: string;
         onClick: () => void;
     };
-    customItems?: ModalItem[];
-    openSubMenu?: string;
-    onToggleSubMenu?: (id?: string) => void;
-    onNavigate?: (href: string) => void;
 };
 //# sourceMappingURL=modal.d.ts.map

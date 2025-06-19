@@ -71,6 +71,6 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
             React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() })),
         isMobile || isTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
             React.createElement(List, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon }))) : (React.createElement("div", { className: styles.side },
-            React.createElement(BasicNav, { links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light' })))));
+            React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light' })))));
 };
 export default Header;

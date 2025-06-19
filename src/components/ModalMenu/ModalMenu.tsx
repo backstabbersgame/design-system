@@ -1,19 +1,15 @@
 import React from 'react';
 import {
-  Chats,
-  House,
-  Rocket,
-  ShoppingCart,
-  CaretDown,
-  CaretUp,
-  SignOut,
-  X,
+  CaretDownIcon,
+  CaretUpIcon,
+  SignOutIcon,
+  XIcon,
 } from '@phosphor-icons/react/dist/ssr';
 import styles from './ModalMenu.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 import Button from '../Button/Button';
 import { ModalItem, ModalMenuProps, SubItem } from '../../types/modal';
-import { menuItems } from '../../constants';
+import { defaultMenuItems, defaultFooterItems } from '../../constants';
 
 const ModalMenu: React.FC<ModalMenuProps> = ({
   showHeader = true,
@@ -24,15 +20,18 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
   onClose,
   activeItem,
   onItemSelect,
+  isSubpage,
   footerButton,
   logoutButton,
   customItems,
+  customFooterItems,
   openSubMenu,
   onToggleSubMenu,
   onNavigate,
 }) => {
-  const defaultItems = menuItems;
-  const items = customItems || defaultItems;
+  const items = customItems || defaultMenuItems;
+
+  const footerItems = customFooterItems || defaultFooterItems;
 
   const isItemActive = (item: ModalItem) =>
     (item.id === activeItem && openSubMenu !== item.id) ||
@@ -110,31 +109,57 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
   );
 
   const renderFooter = () => {
-    if (footerButton && !logoutButton) {
-      return (
-        <Button
-          variant='cta'
-          className={styles['button-footer']}
-          id={footerButton.id}
-          onClick={() => handleButtonAction('/conta', footerButton.onClick)}
-        >
-          {footerButton.label}
-        </Button>
-      );
-    }
-    if (logoutButton && !footerButton) {
-      return (
-        <button
-          className={styles['button-logout']}
-          id={logoutButton.id}
-          onClick={() => handleButtonAction('/logout', logoutButton.onClick)}
-          type='button'
-        >
-          <SignOut size={20} /> {logoutButton.label}
-        </button>
-      );
-    }
-    return null;
+    return (
+      <div className={styles['container-footer']}>
+        {isSubpage && (
+          <ul className={styles['list-footer']}>
+            {footerItems.map((footerItem, index) => (
+              <React.Fragment key={footerItem.id}>
+                <li
+                  className={styles.item}
+                  role='link'
+                >
+                  <a
+                    className={styles['link-footer']}
+                    href={footerItem.href}
+                    rel='noopener noreferrer'
+                  >
+                    <span className={styles['icon-label']}>
+                      {footerItem.icon}
+                      <span className={styles.label}>{footerItem.label}</span>
+                    </span>
+                  </a>
+                </li>
+                {index < footerItems.length - 1 && (
+                  <hr className={styles.line} />
+                )}
+              </React.Fragment>
+            ))}
+          </ul>
+        )}
+        {footerButton && !logoutButton && (
+          <Button
+            variant='cta'
+            className={styles['button-footer']}
+            id={footerButton.id}
+            onClick={() => handleButtonAction('/conta', footerButton.onClick)}
+          >
+            {footerButton.label}
+          </Button>
+        )}
+
+        {logoutButton && !footerButton && (
+          <button
+            className={styles['button-logout']}
+            id={logoutButton.id}
+            onClick={() => handleButtonAction('/logout', logoutButton.onClick)}
+            type='button'
+          >
+            <SignOutIcon size={20} /> {logoutButton.label}
+          </button>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -167,7 +192,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                   aria-label='Fechar menu'
                   type='button'
                 >
-                  <X
+                  <XIcon
                     size={24}
                     className={styles.close}
                   />
@@ -177,7 +202,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
 
             <nav className={styles.nav}>
               <ul className={styles.list}>
-                {items.map((item) => (
+                {items.map((item, index) => (
                   <React.Fragment key={item.id}>
                     <li
                       className={[
@@ -189,7 +214,6 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                       ].join(' ')}
                     >
                       <button
-                        type='button'
                         className={[
                           styles['button-item'],
                           isItemActive(item) ? styles.active : '',
@@ -209,16 +233,16 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                         {item.hasSubMenu && (
                           <span className={styles.arrow}>
                             {openSubMenu === item.id ? (
-                              <CaretUp size={20} />
+                              <CaretUpIcon size={20} />
                             ) : (
-                              <CaretDown size={20} />
+                              <CaretDownIcon size={20} />
                             )}
                           </span>
                         )}
                       </button>
                       {item.hasSubMenu && renderSubMenu(item)}
                     </li>
-                    <hr className={styles.line} />
+                    {index < items.length - 1 && <hr className={styles.line} />}
                   </React.Fragment>
                 ))}
               </ul>

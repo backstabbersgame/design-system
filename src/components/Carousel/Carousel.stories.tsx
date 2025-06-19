@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import './Carousel';
 import { games as gamesMock } from '../../constants';
 import Carousel from './Carousel';
 

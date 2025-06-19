@@ -1,8 +1,9 @@
 import { Link } from '../types/link';
-import { ModalItem } from '../types/modal';
+import { FooterItem, ModalItem } from '../types/modal';
 import { GameData } from '../types/interfaces';
 export declare const links: Link[];
-export declare const menuItems: ModalItem[];
+export declare const defaultMenuItems: ModalItem[];
+export declare const defaultFooterItems: FooterItem[];
 export declare const images: {
     mobile: {
         src: string;

@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from '../types/link';
-import { ModalItem } from '../types/modal';
-import { House, Rocket, UsersThree, Newspaper } from '@phosphor-icons/react';
+import { FooterItem, ModalItem } from '../types/modal';
+import {
+  HouseIcon,
+  RocketIcon,
+  UsersThreeIcon,
+  NewspaperIcon,
+  ShoppingCartIcon,
+  ChatsIcon,
+} from '@phosphor-icons/react';
 import { GameData } from '../types/interfaces';
 
 export const links: Link[] = [
@@ -11,30 +18,51 @@ export const links: Link[] = [
   { name: 'Newsletter', href: '#newsletter' },
 ];
 
-export const menuItems: ModalItem[] = [
+export const defaultMenuItems: ModalItem[] = [
   {
     id: 'inicio',
     label: 'Início',
-    icon: <House size={24} />,
+    icon: <HouseIcon size={24} />,
     href: '#inicio',
   },
   {
     id: 'jogos',
     label: 'Jogos',
-    icon: <Rocket size={24} />,
+    icon: <RocketIcon size={24} />,
     href: '#jogos',
   },
   {
     id: 'sobre',
     label: 'Sobre',
-    icon: <UsersThree size={24} />,
+    icon: <UsersThreeIcon size={24} />,
     href: '#sobre',
   },
   {
     id: 'newsletter',
     label: 'Newsletter',
-    icon: <Newspaper size={24} />,
+    icon: <NewspaperIcon size={24} />,
     href: '#newsletter',
+  },
+];
+
+export const defaultFooterItems: FooterItem[] = [
+  {
+    id: '1',
+    label: 'Voltar para a Solara',
+    icon: <HouseIcon size={24} />,
+    href: '#solara',
+  },
+  {
+    id: '2',
+    label: 'Lojinha',
+    icon: <ShoppingCartIcon size={24} />,
+    href: '#lojinha',
+  },
+  {
+    id: '3',
+    label: 'Contato',
+    icon: <ChatsIcon size={24} />,
+    href: '#contato',
   },
 ];
 
@@ -84,7 +112,7 @@ export const games: GameData[] = [
     },
     details: [...details],
     buttonText: 'Detalhes do jogo',
-    link: ''
+    link: '',
   },
   {
     id: 2,
@@ -103,6 +131,6 @@ export const games: GameData[] = [
     },
     details: [...details],
     buttonText: 'Detalhes do jogo',
-    link: ''
+    link: '',
   },
 ];

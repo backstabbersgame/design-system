@@ -1,35 +1,55 @@
 import React from 'react';
-import { House, Rocket, UsersThree, Newspaper } from '@phosphor-icons/react';
+import { HouseIcon, RocketIcon, UsersThreeIcon, NewspaperIcon, ShoppingCartIcon, ChatsIcon, } from '@phosphor-icons/react';
 export const links = [
     { name: 'Início', href: '#inicio' },
     { name: 'Jogos', href: '#jogos' },
     { name: 'Sobre', href: '#sobre' },
     { name: 'Newsletter', href: '#newsletter' },
 ];
-export const menuItems = [
+export const defaultMenuItems = [
     {
         id: 'inicio',
         label: 'Início',
-        icon: React.createElement(House, { size: 24 }),
+        icon: React.createElement(HouseIcon, { size: 24 }),
         href: '#inicio',
     },
     {
         id: 'jogos',
         label: 'Jogos',
-        icon: React.createElement(Rocket, { size: 24 }),
+        icon: React.createElement(RocketIcon, { size: 24 }),
         href: '#jogos',
     },
     {
         id: 'sobre',
         label: 'Sobre',
-        icon: React.createElement(UsersThree, { size: 24 }),
+        icon: React.createElement(UsersThreeIcon, { size: 24 }),
         href: '#sobre',
     },
     {
         id: 'newsletter',
         label: 'Newsletter',
-        icon: React.createElement(Newspaper, { size: 24 }),
+        icon: React.createElement(NewspaperIcon, { size: 24 }),
         href: '#newsletter',
+    },
+];
+export const defaultFooterItems = [
+    {
+        id: '1',
+        label: 'Voltar para a Solara',
+        icon: React.createElement(HouseIcon, { size: 24 }),
+        href: '#solara',
+    },
+    {
+        id: '2',
+        label: 'Lojinha',
+        icon: React.createElement(ShoppingCartIcon, { size: 24 }),
+        href: '#lojinha',
+    },
+    {
+        id: '3',
+        label: 'Contato',
+        icon: React.createElement(ChatsIcon, { size: 24 }),
+        href: '#contato',
     },
 ];
 export const images = {
@@ -71,7 +91,7 @@ export const games = [
         images: Object.assign({}, images),
         details: [...details],
         buttonText: 'Detalhes do jogo',
-        link: ''
+        link: '',
     },
     {
         id: 2,
@@ -90,6 +110,6 @@ export const games = [
         },
         details: [...details],
         buttonText: 'Detalhes do jogo',
-        link: ''
+        link: '',
     },
 ];

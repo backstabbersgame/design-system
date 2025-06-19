@@ -3,6 +3,7 @@ import styles from './index.module.scss';
 import { BasicNavProps } from '../../types/nav';
 
 export const BasicNav: React.FC<BasicNavProps> = ({
+  variant = 'solara',
   links,
   mode = 'light',
   activeLink,
@@ -22,7 +23,8 @@ export const BasicNav: React.FC<BasicNavProps> = ({
           className={`${styles.link} ${
             activeLink === href ? styles.selected : ''
           } 
-          ${mode === 'light' ? styles.light : styles.dark}`}
+          ${mode === 'light' ? styles.light : styles.dark}
+          ${variant !== 'solara' ? styles.nonSolara : ''}`}
           onClick={(e) => {
             if (href.startsWith('#')) {
               e.preventDefault();
