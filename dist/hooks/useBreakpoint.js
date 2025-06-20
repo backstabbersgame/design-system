@@ -46,7 +46,8 @@ export const useBreakpoint = () => {
                 width <= parseInt(breakpoints.tablet.max)) {
                 return 'tablet';
             }
-            if (width <= parseInt(breakpoints.mobile)) {
+            if (width <= parseInt(breakpoints.mobile) ||
+                width < parseInt(breakpoints.tablet.min)) {
                 return 'mobile';
             }
             return 'unknown';
