@@ -1,8 +1,9 @@
 import React from 'react';
 type UploadProps = {
-    value?: File | null;
-    onChange?: (file: File | null | undefined) => void;
+    value?: File[];
+    onChange?: (files: File[]) => void;
     accept?: string;
+    multiple?: boolean;
     className?: string;
     error?: string;
 };

@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import styles from './Upload.module.scss';
-import { Plus, X, XCircle } from '@phosphor-icons/react/dist/ssr';
+import { PlusIcon, XIcon } from '@phosphor-icons/react/dist/ssr';
 
 type UploadProps = {
-  value?: File | null;
-  onChange?: (file: File | null | undefined) => void;
+  value?: File[];
+  onChange?: (files: File[]) => void;
   accept?: string;
-  // multiple?: boolean;
+  multiple?: boolean;
   className?: string;
   error?: string;
 };
 
-const MAX_FILE_SIZE_KB = 1024;
-const MAX_FILE_SIZE_LABEL = '1 MB';
+const MAX_FILE_SIZE_MB = 1;
+const MAX_FILES = 5;
 
 const ALLOWED_TYPES = [
   'image/jpeg',
@@ -30,31 +30,47 @@ const ALLOWED_TYPES = [
 export const Upload: React.FC<UploadProps> = ({
   value = [],
   onChange,
-  accept = '.jpg,.jpeg,.png,.gif,.pdf,.txt,.csv,.xls,.xlsx,.doc,.docx',
-  // multiple = true,
+  accept = ALLOWED_TYPES.join(','),
+  multiple = true,
   className,
   error,
+  ...props
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selected = event.target.files?.[0] || null;
-    if (!selected) {
-      if (onChange) onChange(null);
-      return;
+    const files = event.target.files;
+    if (!files) return;
+
+    let filesArray = Array.from(files);
+
+    // Filtra arquivos inválidos
+    let validFiles = filesArray.filter(
+      (file) =>
+        ALLOWED_TYPES.includes(file.type) &&
+        file.size <= MAX_FILE_SIZE_MB * 1024 * 1024
+    );
+
+    // Junta com os já selecionados, sem duplicar nomes
+    let newFiles = [...(value || [])];
+    validFiles.forEach((file) => {
+      if (!newFiles.some((f) => f.name === file.name && f.size === file.size)) {
+        newFiles.push(file);
+      }
+    });
+
+    if (newFiles.length > MAX_FILES) {
+      newFiles = newFiles.slice(0, MAX_FILES);
     }
-    const sizeKb = selected.size / 1024;
-    if (sizeKb > MAX_FILE_SIZE_KB) {
-      if (onChange) onChange(null);
-      return;
-    }
-    if (!ALLOWED_TYPES.includes(selected.type)) {
-      if (onChange) onChange(null);
-      return;
-    }
-    if (onChange) onChange(selected);
+
+    if (onChange) onChange(newFiles);
+
+    // Limpa input para permitir re-upload do mesmo arquivo se removido
+    if (inputRef.current) inputRef.current.value = '';
   };
 
-  const removeFile = () => {
-    if (onChange) onChange(null);
+  const removeFile = (index: number) => {
+    if (onChange) onChange(value.filter((_, i) => i !== index));
   };
 
   return (
@@ -62,41 +78,45 @@ export const Upload: React.FC<UploadProps> = ({
       <div className={styles.wrapper}>
         <div className={styles.control}>
           <label className={`${styles.button} ${className || ''}`}>
-            <Plus size={24} />
+            <PlusIcon size={24} />
             Adicionar arquivo
             <input
+              ref={inputRef}
               type='file'
-              // multiple={multiple}
+              multiple={multiple}
               accept={accept}
               onChange={handleFileChange}
               hidden
+              {...props}
             />
           </label>
         </div>
       </div>
       <div className={styles.files}>
-        {value && (
+        {value && value.length > 0 && (
           <ul className={styles.fileList}>
-            <li className={styles.fileItem}>
-              <div className={styles.thumbnail} />
-              <div className={styles.fileDetails}>
-                <p className={styles.fileDetailsP}>
-                  {value instanceof File ? value.name : ''}
-                </p>
-                <span className={styles.fileDetailsP}>
-                  {value instanceof File
-                    ? (value.size / 1024 / 1024).toFixed(2) + ' MB'
-                    : ''}
-                </span>
-              </div>
-              <button
-                onClick={removeFile}
-                className={styles.removeFile}
-                aria-label='Remover arquivo'
+            {value.map((file, idx) => (
+              <li
+                className={styles.fileItem}
+                key={file.name + file.size + idx}
               >
-                <X size={16} />
-              </button>
-            </li>
+                <div className={styles.thumbnail} />
+                <div className={styles.fileDetails}>
+                  <p className={styles.fileDetailsP}>{file.name}</p>
+                  <span className={styles.fileDetailsP}>
+                    {(file.size / 1024 / 1024).toFixed(2)} MB
+                  </span>
+                </div>
+                <button
+                  type='button'
+                  onClick={() => removeFile(idx)}
+                  className={styles.removeFile}
+                  aria-label='Remover arquivo'
+                >
+                  <XIcon size={16} />
+                </button>
+              </li>
+            ))}
           </ul>
         )}
         {error && <div className={styles.fileError}>{error}</div>}
@@ -106,9 +126,3 @@ export const Upload: React.FC<UploadProps> = ({
 };
 
 export default Upload;
-
-//  <input
-//       type='file'
-//       className={`${styles.input} ${className || ''}`}
-//       {...props}
-//     />
