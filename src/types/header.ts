@@ -8,4 +8,7 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   onMenuClick?: () => void;
   onLinkClick?: (href: string) => void;
   onAccountClick?: () => void;
+  isSubpage: boolean;
+  subpageLink: string;
+  pageLink: string;
 }

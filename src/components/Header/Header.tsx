@@ -5,7 +5,7 @@ import BasicNav from '../../core/nav';
 import Button from '../Button/Button';
 import styles from './Header.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { List } from '@phosphor-icons/react/dist/ssr';
+import { ListIcon } from '@phosphor-icons/react/dist/ssr';
 import { HeaderProps } from '../../types/header';
 
 export const Header: React.FC<HeaderProps> = ({
@@ -16,6 +16,9 @@ export const Header: React.FC<HeaderProps> = ({
   onMenuClick,
   onLinkClick,
   onAccountClick,
+  isSubpage,
+  subpageLink,
+  pageLink,
 }) => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const { currentBreakpoint } = useBreakpoint();
@@ -106,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
           aria-label='Abrir menu'
           className={styles.list}
         >
-          <List
+          <ListIcon
             size={24}
             className={
               variant !== 'solara' ? styles['icon-games'] : styles.icon
@@ -121,6 +124,9 @@ export const Header: React.FC<HeaderProps> = ({
             activeLink={activeLink}
             onLinkClick={onLinkClick}
             mode={variant !== 'solara' ? 'dark' : 'light'}
+            isSubpage={isSubpage}
+            subpageLink={subpageLink}
+            pageLink={pageLink}
           />
           {/* <Button
             variant='cta'

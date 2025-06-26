@@ -19,7 +19,7 @@
   font-weight: typography.$font-weight-regular;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -21px;
@@ -38,6 +38,11 @@
     background-color: colors.$primary-500;
     transform: scaleX(1);
   }
+}
+
+.home {
+  display: flex;
+  align-items: center;
 }
 
 .nonSolara::after {

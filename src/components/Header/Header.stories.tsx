@@ -89,6 +89,8 @@ export const DesktopViewGames: Story = {
     onAccountClick: () => alert('Minha conta clicado'),
     variant: 'ordem',
     activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
   },
   parameters: {
     viewport: {
@@ -103,6 +105,8 @@ export const TabletViewGames: Story = {
     onAccountClick: () => alert('Minha conta clicado'),
     variant: 'armada',
     activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
   },
   parameters: {
     viewport: {
@@ -117,6 +121,8 @@ export const MobileViewGames: Story = {
     onMenuClick: () => alert('Modal mobile'),
     variant: 'backstabbers',
     activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
   },
   parameters: {
     viewport: {

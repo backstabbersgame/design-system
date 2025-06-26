@@ -4,4 +4,7 @@ export interface BasicNavProps extends React.HTMLAttributes<HTMLElement> {
   activeLink?: string;
   onLinkClick?: (href: string) => void;
   mode: 'light' | 'dark';
+  isSubpage?: boolean;
+  subpageLink?: string;
+  pageLink?: string;
 }

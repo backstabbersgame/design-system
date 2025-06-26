@@ -11,15 +11,21 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import styles from './index.module.scss';
+import { HouseIcon } from '@phosphor-icons/react/dist/ssr';
 export const BasicNav = (_a) => {
-    var { variant = 'solara', links, mode = 'light', activeLink, onLinkClick, className } = _a, props = __rest(_a, ["variant", "links", "mode", "activeLink", "onLinkClick", "className"]);
-    return (React.createElement("nav", Object.assign({ className: `${styles.nav} ${className || ''}` }, props), links.map(({ name, href }) => (React.createElement("a", { key: href, href: href, className: `${styles.link} ${activeLink === href ? styles.selected : ''} 
+    var { variant = 'solara', links, mode = 'light', activeLink, onLinkClick, isSubpage, subpageLink, pageLink, className } = _a, props = __rest(_a, ["variant", "links", "mode", "activeLink", "onLinkClick", "isSubpage", "subpageLink", "pageLink", "className"]);
+    return (React.createElement("nav", Object.assign({ className: `${styles.nav} ${className || ''}` }, props),
+        isSubpage && React.createElement("a", { key: pageLink, href: pageLink, className: `${styles.home}
+          ${mode === 'light' ? styles.light : styles.dark}
+          ${variant !== 'solara' ? styles.nonSolara : ''}` },
+            React.createElement(HouseIcon, { size: 24 })),
+        links.map(({ name, href }) => (React.createElement("a", { key: href, href: href, className: `${styles.link} ${activeLink === href ? styles.selected : ''} 
           ${mode === 'light' ? styles.light : styles.dark}
           ${variant !== 'solara' ? styles.nonSolara : ''}`, onClick: (e) => {
-            if (href.startsWith('#')) {
-                e.preventDefault();
-            }
-            onLinkClick === null || onLinkClick === void 0 ? void 0 : onLinkClick(href);
-        }, "aria-current": activeLink === href ? 'page' : undefined }, name)))));
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                }
+                onLinkClick === null || onLinkClick === void 0 ? void 0 : onLinkClick(href);
+            }, "aria-current": activeLink === href ? 'page' : undefined }, name)))));
 };
 export default BasicNav;

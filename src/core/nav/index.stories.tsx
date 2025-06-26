@@ -31,6 +31,7 @@ Light.args = {
   ],
   mode: 'light',
   activeLink: '/',
+  isSubpage: false,
 };
 
 export const Dark = Template.bind({});
@@ -43,4 +44,35 @@ Dark.args = {
   ],
   mode: 'dark',
   activeLink: '/',
+  isSubpage: false,
+};
+
+export const SubpageLight = Template.bind({});
+SubpageLight.args = {
+  links: [
+    { name: 'Início', href: '/' },
+    { name: 'Jogos', href: '/about' },
+    { name: 'Lojinha', href: '/services' },
+    { name: 'Contato', href: '/contact' },
+  ],
+  mode: 'light',
+  activeLink: '/',
+  pageLink: 'https://solarastudios.com.br/',
+  isSubpage: true,
+  subpageLink: '/',
+};
+
+export const SubpageDark = Template.bind({});
+SubpageDark.args = {
+  links: [
+    { name: 'Início', href: '/' },
+    { name: 'Jogos', href: '/about' },
+    { name: 'Lojinha', href: '/services' },
+    { name: 'Contato', href: '/contact' },
+  ],
+  mode: 'dark',
+  activeLink: '/',
+  pageLink: 'https://solarastudios.com.br/',
+  isSubpage: true,
+  subpageLink: '/',
 };

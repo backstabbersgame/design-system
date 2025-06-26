@@ -4,8 +4,8 @@ import BasicHeader from '../../core/header';
 import BasicNav from '../../core/nav';
 import styles from './Header.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
-import { List } from '@phosphor-icons/react/dist/ssr';
-export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, }) => {
+import { ListIcon } from '@phosphor-icons/react/dist/ssr';
+export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, isSubpage, subpageLink, pageLink, }) => {
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     const { currentBreakpoint } = useBreakpoint();
     const isMobile = currentBreakpoint === 'mobile';
@@ -70,7 +70,7 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
         React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
             React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() })),
         isMobile || isTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
-            React.createElement(List, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon }))) : (React.createElement("div", { className: styles.side },
-            React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light' })))));
+            React.createElement(ListIcon, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon }))) : (React.createElement("div", { className: styles.side },
+            React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light', isSubpage: isSubpage, subpageLink: subpageLink, pageLink: pageLink })))));
 };
 export default Header;

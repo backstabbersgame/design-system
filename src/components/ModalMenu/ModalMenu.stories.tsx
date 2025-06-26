@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import ModalMenu from './ModalMenu';
 import Button from '../Button/Button';
+import {
+  HouseIcon,
+  LightbulbFilamentIcon,
+  PlanetIcon,
+} from '@phosphor-icons/react/dist/ssr';
 
 export default {
   title: 'Components/ModalMenu',
@@ -49,8 +54,33 @@ const Template: Story['render'] = (args) => {
   );
 };
 
+const footerItems = [
+  {
+    id: '1',
+    icon: <HouseIcon size={24} />,
+    label: 'Voltar para Solara',
+    href: 'solarastudios.com.br',
+  },
+  {
+    id: '2',
+    icon: <PlanetIcon size={24} />,
+    label: 'Lojinha',
+    href: 'solarastudios.com.br',
+  },
+  {
+    id: '3',
+    icon: <LightbulbFilamentIcon size={24} />,
+    label: 'Contato',
+    href: 'solarastudios.com.br',
+  },
+];
+
 export const Default = {
   render: Template,
+  args: {
+    isGame: false,
+    isSubpage: false,
+  },
 };
 
 export const DefaultGame = {
@@ -58,6 +88,8 @@ export const DefaultGame = {
   args: {
     isGame: true,
     gameTitle: 'BACKSTABBERS',
+    isSubpage: true,
+    customFooterItems: footerItems,
   },
 };
 
