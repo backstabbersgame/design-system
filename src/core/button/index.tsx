@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './index.module.scss';
 
 type CommonProps = {
@@ -25,8 +26,25 @@ export const BasicButton: React.FC<BasicButtonProps> = ({
   ...props
 }) => {
   const combinedClassName = `${styles.button} ${className || ''}`;
+  const isInternal = href && href.startsWith('/');
 
   if (href) {
+    if (isInternal) {
+      return (
+        <Link
+          href={href}
+          passHref
+          legacyBehavior
+        >
+          <a
+            className={combinedClassName}
+            {...(props as AnchorProps)}
+          >
+            {children}
+          </a>
+        </Link>
+      );
+    }
     return (
       <a
         className={combinedClassName}

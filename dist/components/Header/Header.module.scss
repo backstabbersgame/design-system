@@ -33,12 +33,41 @@
   align-items: center;
 }
 
+.texts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+.game-title {
+  font-size: typography.$font-size-12;
+  font-family: typography.$paragraph-font;
+  font-weight: typography.$font-weight-semi-bold;
+  color: colors.$neutral-500;
+  padding: 0;
+  margin: 0;
+}
+
+.page-title {
+  padding: 0;
+  margin: 0;
+  font-family: typography.$heading-font;
+  font-size: typography.$font-size-16;
+  font-weight: typography.$font-weight-extra-bold;
+  line-height: typography.$line-height-120;
+}
+
 .list {
   background-color: transparent;
   border: none;
   height: 40px;
   display: flex;
   align-items: center;
+  // padding: 0 20px 0 0;
 
   &:hover {
     cursor: pointer;

@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { CaretDownIcon, CaretUpIcon, SignOutIcon, XIcon, } from '@phosphor-icons/react/dist/ssr';
 import styles from './ModalMenu.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -9,8 +11,11 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
     const footerItems = customFooterItems || defaultFooterItems;
     const isItemActive = (item) => {
         var _a;
-        return (item.id === activeItem && openSubMenu !== item.id) ||
-            ((_a = item.subItems) === null || _a === void 0 ? void 0 : _a.some((sub) => sub.id === activeItem));
+        if (item.hasSubMenu) {
+            return (item.id === activeItem ||
+                ((_a = item.subItems) === null || _a === void 0 ? void 0 : _a.some((sub) => sub.id === activeItem)));
+        }
+        return item.id === activeItem;
     };
     const scrollOrNavigate = (href) => {
         if (!href)
@@ -59,13 +64,19 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
     };
     const renderFooter = () => {
         return (React.createElement("div", { className: styles['container-footer'] },
-            isSubpage && (React.createElement("ul", { className: styles['list-footer'] }, footerItems.map((footerItem, index) => (React.createElement(React.Fragment, { key: footerItem.id },
-                React.createElement("li", { className: styles.item, role: 'link' },
-                    React.createElement("a", { className: styles['link-footer'], href: footerItem.href, rel: 'noopener noreferrer' },
+            isSubpage && (React.createElement("ul", { className: styles['list-footer'] }, footerItems.map((footerItem, index) => {
+                const isInternal = footerItem.href && footerItem.href.startsWith('/');
+                return (React.createElement(React.Fragment, { key: footerItem.id },
+                    React.createElement("li", { className: styles.item, role: 'link' }, isInternal && footerItem.href ? (React.createElement(Link, { href: footerItem.href, passHref: true, legacyBehavior: true },
+                        React.createElement("a", { className: styles['link-footer'] },
+                            React.createElement("span", { className: styles['icon-label'] },
+                                footerItem.icon,
+                                React.createElement("span", { className: styles.label }, footerItem.label))))) : (React.createElement("a", { className: styles['link-footer'], href: footerItem.href, rel: 'noopener noreferrer' },
                         React.createElement("span", { className: styles['icon-label'] },
                             footerItem.icon,
-                            React.createElement("span", { className: styles.label }, footerItem.label)))),
-                index < footerItems.length - 1 && (React.createElement("hr", { className: styles.line }))))))),
+                            React.createElement("span", { className: styles.label }, footerItem.label))))),
+                    index < footerItems.length - 1 && (React.createElement("hr", { className: styles.line }))));
+            }))),
             footerButton && !logoutButton && (React.createElement(Button, { variant: 'cta', className: styles['button-footer'], id: footerButton.id, onClick: () => handleButtonAction('/conta', footerButton.onClick) }, footerButton.label)),
             logoutButton && !footerButton && (React.createElement("button", { className: styles['button-logout'], id: logoutButton.id, onClick: () => handleButtonAction('/logout', logoutButton.onClick), type: 'button' },
                 React.createElement(SignOutIcon, { size: 20 }),
@@ -81,24 +92,35 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
                 React.createElement("button", { onClick: onClose, className: styles['button-close'], "aria-label": 'Fechar menu', type: 'button' },
                     React.createElement(XIcon, { size: 24, className: styles.close })))),
             React.createElement("nav", { className: styles.nav },
-                React.createElement("ul", { className: styles.list }, items.map((item, index) => (React.createElement(React.Fragment, { key: item.id },
-                    React.createElement("li", { className: [
-                            styles.item,
-                            isItemActive(item) ? styles.active : '',
-                            item.hasSubMenu && openSubMenu === item.id
-                                ? styles['submenu-open']
-                                : '',
-                        ].join(' ') },
-                        React.createElement("button", { className: [
-                                styles['button-item'],
+                React.createElement("ul", { className: styles.list }, items.map((item, index) => {
+                    const isActive = isItemActive(item);
+                    return (React.createElement(React.Fragment, { key: item.id },
+                        React.createElement("li", { className: [
+                                styles.item,
                                 isItemActive(item) ? styles.active : '',
-                            ].join(' '), onClick: () => handleItemClick(item), "aria-expanded": !!item.hasSubMenu && openSubMenu === item.id, "aria-controls": item.hasSubMenu ? `submenu-${item.id}` : undefined },
-                            React.createElement("span", { className: styles['icon-label'] },
-                                item.icon,
-                                React.createElement("span", { className: styles.label }, item.label)),
-                            item.hasSubMenu && (React.createElement("span", { className: styles.arrow }, openSubMenu === item.id ? (React.createElement(CaretUpIcon, { size: 20 })) : (React.createElement(CaretDownIcon, { size: 20 }))))),
-                        item.hasSubMenu && renderSubMenu(item)),
-                    index < items.length - 1 && React.createElement("hr", { className: styles.line })))))),
+                                item.hasSubMenu && openSubMenu === item.id
+                                    ? styles['submenu-open']
+                                    : '',
+                            ].join(' ') },
+                            React.createElement("button", { className: [
+                                    styles['button-item'],
+                                    isItemActive(item) ? styles.active : '',
+                                ].join(' '), onClick: () => handleItemClick(item), "aria-expanded": !!item.hasSubMenu && openSubMenu === item.id, "aria-controls": item.hasSubMenu ? `submenu-${item.id}` : undefined },
+                                React.createElement("span", { className: styles['icon-label'] },
+                                    React.isValidElement(item.icon) ? (React.cloneElement(item.icon, {
+                                        className: [
+                                            styles.iconSvg,
+                                            isActive ? styles['icon-active'] : '',
+                                        ].join(' '),
+                                    })) : typeof item.icon === 'object' &&
+                                        'svgActive' in item.icon ? (React.createElement(Image, { src: isActive
+                                            ? item.icon.svgActive
+                                            : item.icon.svgInactive, alt: item.label, width: 24, height: 24, className: styles.icon })) : null,
+                                    React.createElement("span", { className: styles.label }, item.label)),
+                                item.hasSubMenu && (React.createElement("span", { className: styles.arrow }, openSubMenu === item.id ? (React.createElement(CaretUpIcon, { size: 20 })) : (React.createElement(CaretDownIcon, { size: 20 }))))),
+                            item.hasSubMenu && renderSubMenu(item)),
+                        index < items.length - 1 && (React.createElement("hr", { className: styles.line }))));
+                }))),
             React.createElement("footer", { className: styles['modal-footer'] }, renderFooter())))) : null));
 };
 export default ModalMenu;

@@ -11,13 +11,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import styles from './Button.module.scss';
-import { ArrowLeft, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react/dist/ssr';
 import BasicButton from '../../core/button';
 export const Button = (_a) => {
     var { variant = 'primary', arrowLeft = false, arrowRight = false, href, className, children } = _a, props = __rest(_a, ["variant", "arrowLeft", "arrowRight", "href", "className", "children"]);
     return (React.createElement(BasicButton, Object.assign({ className: `${styles.button} ${styles[variant]} ${className || ''}`, href: href }, props),
-        arrowLeft && (React.createElement(ArrowLeft, { size: 24, className: styles.arrow })),
+        arrowLeft && (React.createElement(ArrowLeftIcon, { size: 24, className: styles.arrow })),
         children,
-        arrowRight && (React.createElement(ArrowRight, { size: 24, className: styles.arrow }))));
+        arrowRight && (React.createElement(ArrowRightIcon, { size: 24, className: styles.arrow }))));
 };
 export default Button;

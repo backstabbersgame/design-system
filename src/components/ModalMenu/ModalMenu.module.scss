@@ -160,11 +160,11 @@
   gap: 19px;
 }
 
-.icon-label svg {
+.iconSvg {
   fill: colors.$neutral-400;
 }
 
-.icon-label.active svg {
+.icon-active {
   fill: colors.$primary-500;
 }
 

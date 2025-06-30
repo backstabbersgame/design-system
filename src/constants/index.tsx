@@ -40,7 +40,10 @@ export const defaultMenuItems: ModalItem[] = [
   {
     id: 'newsletter',
     label: 'Newsletter',
-    icon: <NewspaperIcon size={24} />,
+    icon: {
+      svgActive: '/images/planet-active.svg',
+      svgInactive: '/images/planet-inactive.svg',
+    },
     href: '#newsletter',
   },
 ];

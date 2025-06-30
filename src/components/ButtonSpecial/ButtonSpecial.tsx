@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './ButtonSpecial.module.scss';
 
 interface ButtonSpecialProps {
@@ -9,6 +10,8 @@ interface ButtonSpecialProps {
   className?: string;
 }
 
+const isInternal = (href: string) => href.startsWith('/');
+
 const ButtonSpecial = ({
   icon,
   label,
@@ -17,14 +20,8 @@ const ButtonSpecial = ({
   className,
   ...props
 }: ButtonSpecialProps) => {
-  return (
-    <a
-      href={href}
-      className={`${styles.link}  ${className || ''} ${
-        size === 'big' ? styles.big : styles.small
-      }`}
-      {...props}
-    >
+  const content = (
+    <>
       {icon}
       <span
         className={`${styles.label} ${
@@ -33,6 +30,34 @@ const ButtonSpecial = ({
       >
         {label}
       </span>
+    </>
+  );
+
+  if (isInternal(href)) {
+    return (
+      <Link
+        href={href}
+        className={`${styles.link} ${className || ''} ${
+          size === 'big' ? styles.big : styles.small
+        }`}
+        {...props}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      className={`${styles.link} ${className || ''} ${
+        size === 'big' ? styles.big : styles.small
+      }`}
+      target='_blank'
+      rel='noopener noreferrer'
+      {...props}
+    >
+      {content}
     </a>
   );
 };

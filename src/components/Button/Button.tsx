@@ -1,6 +1,6 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
 import styles from './Button.module.scss';
-import { ArrowLeft, ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react/dist/ssr';
 import BasicButton, { BasicButtonProps } from '../../core/button';
 
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'link' | 'cta';
@@ -10,7 +10,7 @@ export type ButtonProps = BasicButtonProps & {
   arrowLeft?: boolean;
   arrowRight?: boolean;
   href?: string;
-}
+};
 
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
@@ -28,14 +28,14 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {arrowLeft && (
-        <ArrowLeft
+        <ArrowLeftIcon
           size={24}
           className={styles.arrow}
         />
       )}
       {children}
       {arrowRight && (
-        <ArrowRight
+        <ArrowRightIcon
           size={24}
           className={styles.arrow}
         />

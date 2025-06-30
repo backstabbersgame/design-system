@@ -1,0 +1,9 @@
+@use '../../styles/partials/colors' as colors;
+
+.backButton {
+  background: none;
+  border: none;
+  color: colors.$primary-500;
+  cursor: pointer;
+  position: relative;
+}

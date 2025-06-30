@@ -1,6 +1,6 @@
 export type FooterItem = {
   id: string;
-  icon: React.ReactNode;
+  icon: React.ReactElement;
   label: string;
   href?: string;
 };
@@ -13,7 +13,7 @@ export type SubItem = {
 
 export type ModalItem = {
   id: string;
-  icon: React.ReactNode;
+  icon: React.ReactElement | { svgActive: string; svgInactive: string };
   label: string;
   href?: string;
   hasSubMenu?: boolean;
@@ -38,18 +38,3 @@ export type ModalMenuProps = {
   footerButton?: { id?: string; label: string; onClick: () => void };
   logoutButton?: { id?: string; label: string; onClick: () => void };
 };
-
-// export type SubItem = {
-//   id: string;
-//   label: string;
-//   href: string;
-// };
-
-// export type ModalItem = {
-//   id: string;
-//   icon: React.ReactNode;
-//   label: string;
-//   href?: string;
-//   hasSubMenu?: boolean;
-//   subItems?: SubItem[];
-// };

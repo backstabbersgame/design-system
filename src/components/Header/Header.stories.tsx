@@ -47,6 +47,7 @@ export const DesktopViewSolara: Story = {
     onAccountClick: () => alert('Minha conta clicado'),
     variant: 'solara',
     activeLink: '/',
+    pathname: '/',
   },
   parameters: {
     viewport: {
@@ -61,6 +62,7 @@ export const TabletViewSolara: Story = {
     onAccountClick: () => alert('Minha conta clicado'),
     variant: 'solara',
     activeLink: '/',
+    pathname: '/',
   },
   parameters: {
     viewport: {
@@ -75,6 +77,7 @@ export const MobileViewSolara: Story = {
     onMenuClick: () => alert('Modal mobile'),
     variant: 'solara',
     activeLink: '/',
+    pathname: '/',
   },
   parameters: {
     viewport: {
@@ -87,10 +90,11 @@ export const DesktopViewGames: Story = {
   args: {
     links: basicLinks,
     onAccountClick: () => alert('Minha conta clicado'),
-    variant: 'ordem',
+    variant: 'backstabbers',
     activeLink: '/',
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
+    pathname: '/jogos/backstabbers',
   },
   parameters: {
     viewport: {
@@ -103,10 +107,11 @@ export const TabletViewGames: Story = {
   args: {
     links: basicLinks,
     onAccountClick: () => alert('Minha conta clicado'),
-    variant: 'armada',
+    variant: 'ordem',
     activeLink: '/',
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
+    pathname: '/jogos/ordem-ao-caos',
   },
   parameters: {
     viewport: {
@@ -119,10 +124,63 @@ export const MobileViewGames: Story = {
   args: {
     links: basicLinks,
     onMenuClick: () => alert('Modal mobile'),
+    variant: 'rebeliao',
+    activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
+    pathname: '/jogos/rebeliao-dos-gatos',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+};
+
+
+export const DesktopViewGamesDetails: Story = {
+  args: {
+    links: basicLinks,
+    onAccountClick: () => alert('Minha conta clicado'),
+    variant: 'ordem',
+    activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
+    pathname: '/jogos/backstabbers/como-jogar',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop',
+    },
+  },
+};
+
+export const TabletViewGamesDetails: Story = {
+  args: {
+    links: basicLinks,
+    onAccountClick: () => alert('Minha conta clicado'),
+    variant: 'armada',
+    activeLink: '/',
+    pageLink: 'https://solarastudios.com.br/',
+    isSubpage: true,
+    pathname: '/jogos/ordem-ao-caos/como-jogar',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'tablet',
+    },
+  },
+};
+
+export const MobileViewGamesDetails: Story = {
+  args: {
+    links: basicLinks,
+    onMenuClick: () => alert('Modal mobile'),
     variant: 'backstabbers',
     activeLink: '/',
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
+    pathname: '/jogos/rebeliao-dos-gatos/como-jogar',
   },
   parameters: {
     viewport: {

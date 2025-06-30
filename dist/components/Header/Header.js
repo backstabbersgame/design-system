@@ -5,71 +5,97 @@ import BasicNav from '../../core/nav';
 import styles from './Header.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { ListIcon } from '@phosphor-icons/react/dist/ssr';
-export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, isSubpage, subpageLink, pageLink, }) => {
+import BackButton from '../BackButton/BackButton';
+export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, isSubpage, subpageLink, pageLink, gameTitle, pageTitle, pathname, onBack, }) => {
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     const { currentBreakpoint } = useBreakpoint();
     const isMobile = currentBreakpoint === 'mobile';
     const isTablet = currentBreakpoint === 'tablet';
+    const isMobileOrTablet = isMobile || isTablet;
+    // console.log({ pathname });
+    const showLogo = pathname === '/' ||
+        pathname === '/jogos/backstabbers' ||
+        pathname === '/jogos/ordem-ao-caos' ||
+        pathname === '/jogos/rebeliao-dos-gatos' ||
+        pathname === '/jogos/armada-dos-caes' ||
+        pathname === '/jogos/decodica';
     const handleImageWidth = () => {
         switch (variant) {
             case 'solara':
-                return isMobile || isTablet ? 116 : 145;
+                return isMobileOrTablet ? 116 : 145;
             case 'backstabbers':
                 return isMobile ? 124.07 : isTablet ? 93.05 : 155.09;
             case 'ordem':
-                return isMobile || isTablet ? 54.53 : 68.16;
+                return isMobileOrTablet ? 54.53 : 68.16;
             case 'rebeliao':
-                return isMobile || isTablet ? 57.41 : 70.5;
+                return isMobileOrTablet ? 57.41 : 70.5;
             case 'armada':
-                return isMobile || isTablet ? 89.7 : 112.12;
+                return isMobileOrTablet ? 89.7 : 112.12;
+            case 'decodica':
+                return isMobileOrTablet ? 58.33 : 72.91;
         }
     };
     const handleImageHeight = () => {
         switch (variant) {
             case 'solara':
-                return isMobile || isTablet ? 32 : 40;
+                return isMobileOrTablet ? 32 : 40;
             case 'backstabbers':
                 return isMobile ? 32 : isTablet ? 24 : 40;
             case 'ordem':
-                return isMobile || isTablet ? 32 : 40;
+                return isMobileOrTablet ? 32 : 40;
             case 'rebeliao':
-                return isMobile || isTablet ? 32.66 : 39.33;
+                return isMobileOrTablet ? 32.66 : 39.33;
             case 'armada':
-                return isMobile || isTablet ? 32 : 40;
+                return isMobileOrTablet ? 32 : 40;
+            case 'decodica':
+                return isMobileOrTablet ? 32.01 : 40.01;
         }
     };
     const handleHeaderImage = () => {
         switch (variant) {
             case 'solara':
-                return `${basePath}/images/solara-horizontal-light.svg`;
+                return `${basePath}/images/logos/solara-horizontal-light.svg`;
             case 'backstabbers':
-                return `${basePath}/images/backstabbers.svg`;
+                return `${basePath}/images/logos/backstabbers.svg`;
             case 'ordem':
-                return `${basePath}/images/ordem.svg`;
+                return `${basePath}/images/logos/ordem.svg`;
             case 'rebeliao':
-                return `${basePath}/images/rebeliao.svg`;
+                return `${basePath}/images/logos/rebeliao.svg`;
             case 'armada':
-                return `${basePath}/images/armada.svg`;
+                return `${basePath}/images/logos/armada.svg`;
+            case 'decodica':
+                return `${basePath}/images/logos/decodica.svg`;
         }
     };
     const handleAltImage = () => {
         switch (variant) {
             case 'solara':
-                return 'Logo da Solara Studios bege';
+                return 'Logo da Solara Studios';
             case 'backstabbers':
-                return 'Capa do jogo Backstabbers';
+                return 'Logo Backstabbers';
             case 'ordem':
-                return 'Capa do jogo Ordem ao caos';
+                return 'Logo Ordem ao caos';
             case 'rebeliao':
-                return 'Capa do jogo Rebelião dos Gatos';
+                return 'Logo Rebelião dos Gatos';
             case 'armada':
-                return 'Capa do jogo Armada dos Cães';
+                return 'Logo Armada dos Cães';
+            case 'decodica':
+                return 'Logo Decodica';
+        }
+    };
+    const handlePageName = () => {
+        // console.log({ showLogo, variant, isTablet, isMobile });
+        if (!showLogo && variant !== 'solara' && (isTablet || isMobile)) {
+            return (React.createElement("div", { className: styles.texts },
+                React.createElement("p", { className: styles['game-title'] }, gameTitle),
+                React.createElement("h2", { className: styles['page-title'] }, pageTitle)));
         }
     };
     return (React.createElement(BasicHeader, { className: variant !== 'solara' ? styles['header-games'] : styles.header },
-        React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
-            React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() })),
-        isMobile || isTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
+        showLogo || !isMobileOrTablet ? (React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
+            React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() }))) : (React.createElement(BackButton, { onClick: onBack, tabIndex: 0, "aria-label": 'Voltar' })),
+        handlePageName(),
+        isMobileOrTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
             React.createElement(ListIcon, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon }))) : (React.createElement("div", { className: styles.side },
             React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light', isSubpage: isSubpage, subpageLink: subpageLink, pageLink: pageLink })))));
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HouseIcon, RocketIcon, UsersThreeIcon, NewspaperIcon, ShoppingCartIcon, ChatsIcon, } from '@phosphor-icons/react';
+import { HouseIcon, RocketIcon, UsersThreeIcon, ShoppingCartIcon, ChatsIcon, } from '@phosphor-icons/react';
 export const links = [
     { name: 'Início', href: '#inicio' },
     { name: 'Jogos', href: '#jogos' },
@@ -28,7 +28,10 @@ export const defaultMenuItems = [
     {
         id: 'newsletter',
         label: 'Newsletter',
-        icon: React.createElement(NewspaperIcon, { size: 24 }),
+        icon: {
+            svgActive: '/images/planet-active.svg',
+            svgInactive: '/images/planet-inactive.svg',
+        },
         href: '#newsletter',
     },
 ];

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   CaretDownIcon,
   CaretUpIcon,
@@ -33,9 +35,15 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
 
   const footerItems = customFooterItems || defaultFooterItems;
 
-  const isItemActive = (item: ModalItem) =>
-    (item.id === activeItem && openSubMenu !== item.id) ||
-    item.subItems?.some((sub) => sub.id === activeItem);
+  const isItemActive = (item: ModalItem) => {
+    if (item.hasSubMenu) {
+      return (
+        item.id === activeItem ||
+        item.subItems?.some((sub) => sub.id === activeItem)
+      );
+    }
+    return item.id === activeItem;
+  };
 
   const scrollOrNavigate = (href?: string) => {
     if (!href) return;
@@ -113,28 +121,51 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
       <div className={styles['container-footer']}>
         {isSubpage && (
           <ul className={styles['list-footer']}>
-            {footerItems.map((footerItem, index) => (
-              <React.Fragment key={footerItem.id}>
-                <li
-                  className={styles.item}
-                  role='link'
-                >
-                  <a
-                    className={styles['link-footer']}
-                    href={footerItem.href}
-                    rel='noopener noreferrer'
+            {footerItems.map((footerItem, index) => {
+              const isInternal =
+                footerItem.href && footerItem.href.startsWith('/');
+              return (
+                <React.Fragment key={footerItem.id}>
+                  <li
+                    className={styles.item}
+                    role='link'
                   >
-                    <span className={styles['icon-label']}>
-                      {footerItem.icon}
-                      <span className={styles.label}>{footerItem.label}</span>
-                    </span>
-                  </a>
-                </li>
-                {index < footerItems.length - 1 && (
-                  <hr className={styles.line} />
-                )}
-              </React.Fragment>
-            ))}
+                    {isInternal && footerItem.href ? (
+                      <Link
+                        href={footerItem.href}
+                        passHref
+                        legacyBehavior
+                      >
+                        <a className={styles['link-footer']}>
+                          <span className={styles['icon-label']}>
+                            {footerItem.icon}
+                            <span className={styles.label}>
+                              {footerItem.label}
+                            </span>
+                          </span>
+                        </a>
+                      </Link>
+                    ) : (
+                      <a
+                        className={styles['link-footer']}
+                        href={footerItem.href}
+                        rel='noopener noreferrer'
+                      >
+                        <span className={styles['icon-label']}>
+                          {footerItem.icon}
+                          <span className={styles.label}>
+                            {footerItem.label}
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                  </li>
+                  {index < footerItems.length - 1 && (
+                    <hr className={styles.line} />
+                  )}
+                </React.Fragment>
+              );
+            })}
           </ul>
         )}
         {footerButton && !logoutButton && (
@@ -202,49 +233,78 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
 
             <nav className={styles.nav}>
               <ul className={styles.list}>
-                {items.map((item, index) => (
-                  <React.Fragment key={item.id}>
-                    <li
-                      className={[
-                        styles.item,
-                        isItemActive(item) ? styles.active : '',
-                        item.hasSubMenu && openSubMenu === item.id
-                          ? styles['submenu-open']
-                          : '',
-                      ].join(' ')}
-                    >
-                      <button
+                {items.map((item, index) => {
+                  const isActive = isItemActive(item);
+
+                  return (
+                    <React.Fragment key={item.id}>
+                      <li
                         className={[
-                          styles['button-item'],
+                          styles.item,
                           isItemActive(item) ? styles.active : '',
+                          item.hasSubMenu && openSubMenu === item.id
+                            ? styles['submenu-open']
+                            : '',
                         ].join(' ')}
-                        onClick={() => handleItemClick(item)}
-                        aria-expanded={
-                          !!item.hasSubMenu && openSubMenu === item.id
-                        }
-                        aria-controls={
-                          item.hasSubMenu ? `submenu-${item.id}` : undefined
-                        }
                       >
-                        <span className={styles['icon-label']}>
-                          {item.icon}
-                          <span className={styles.label}>{item.label}</span>
-                        </span>
-                        {item.hasSubMenu && (
-                          <span className={styles.arrow}>
-                            {openSubMenu === item.id ? (
-                              <CaretUpIcon size={20} />
-                            ) : (
-                              <CaretDownIcon size={20} />
-                            )}
+                        <button
+                          className={[
+                            styles['button-item'],
+                            isItemActive(item) ? styles.active : '',
+                          ].join(' ')}
+                          onClick={() => handleItemClick(item)}
+                          aria-expanded={
+                            !!item.hasSubMenu && openSubMenu === item.id
+                          }
+                          aria-controls={
+                            item.hasSubMenu ? `submenu-${item.id}` : undefined
+                          }
+                        >
+                          <span className={styles['icon-label']}>
+                            {React.isValidElement(item.icon) ? (
+                              React.cloneElement(
+                                item.icon as ReactElement<any>,
+                                {
+                                  className: [
+                                    styles.iconSvg,
+                                    isActive ? styles['icon-active'] : '',
+                                  ].join(' '),
+                                }
+                              )
+                            ) : typeof item.icon === 'object' &&
+                              'svgActive' in item.icon ? (
+                              <Image
+                                src={
+                                  isActive
+                                    ? item.icon.svgActive
+                                    : item.icon.svgInactive
+                                }
+                                alt={item.label}
+                                width={24}
+                                height={24}
+                                className={styles.icon}
+                              />
+                            ) : null}
+                            <span className={styles.label}>{item.label}</span>
                           </span>
-                        )}
-                      </button>
-                      {item.hasSubMenu && renderSubMenu(item)}
-                    </li>
-                    {index < items.length - 1 && <hr className={styles.line} />}
-                  </React.Fragment>
-                ))}
+                          {item.hasSubMenu && (
+                            <span className={styles.arrow}>
+                              {openSubMenu === item.id ? (
+                                <CaretUpIcon size={20} />
+                              ) : (
+                                <CaretDownIcon size={20} />
+                              )}
+                            </span>
+                          )}
+                        </button>
+                        {item.hasSubMenu && renderSubMenu(item)}
+                      </li>
+                      {index < items.length - 1 && (
+                        <hr className={styles.line} />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </ul>
             </nav>
             <footer className={styles['modal-footer']}>{renderFooter()}</footer>

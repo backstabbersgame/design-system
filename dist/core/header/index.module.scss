@@ -5,7 +5,7 @@
 .header {
   font-family: typography.$base-font-family;
   font-weight: typography.$font-weight-regular;
-  padding: 0 20px;
+  padding: 0 6vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,13 +18,11 @@
 @media only screen and (min-width: breakpoints.$tablet-min) {
   .header {
     height: 72px;
-    padding: 0 32px;
   }
 }
 
 @media only screen and (min-width: breakpoints.$laptop-min) {
   .header {
-    padding: 0 40px;
     width: 88vw;
     margin-top: 24px;
   }

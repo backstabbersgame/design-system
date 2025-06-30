@@ -10,11 +10,17 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
+import Link from 'next/link';
 import styles from './index.module.scss';
 export const BasicButton = (_a) => {
     var { children, className, href } = _a, props = __rest(_a, ["children", "className", "href"]);
     const combinedClassName = `${styles.button} ${className || ''}`;
+    const isInternal = href && href.startsWith('/');
     if (href) {
+        if (isInternal) {
+            return (React.createElement(Link, { href: href, passHref: true, legacyBehavior: true },
+                React.createElement("a", Object.assign({ className: combinedClassName }, props), children)));
+        }
         return (React.createElement("a", Object.assign({ className: combinedClassName, href: href, target: '_blank', rel: 'noopener noreferrer' }, props), children));
     }
     return (React.createElement("button", Object.assign({ className: combinedClassName }, props), children));

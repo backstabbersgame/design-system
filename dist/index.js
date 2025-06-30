@@ -16,3 +16,4 @@ export { default as InputTextArea } from './components/InputTextArea/InputTextAr
 export { default as ModalMenu } from './components/ModalMenu/ModalMenu';
 export { default as Stepper } from './components/Stepper/Stepper';
 export { default as Upload } from './components/Upload/Upload';
+export { default as BackButton } from './components/BackButton/BackButton';
