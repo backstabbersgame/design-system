@@ -1,12 +1,8 @@
-// @use '@backstabbersgame/design-system/styles/partials/colors';
-// @use '@backstabbersgame/design-system/styles/partials/typography';
-// @use '@backstabbersgame/design-system/styles/partials/spaces';
-// @use '@backstabbersgame/design-system/styles/partials/breakpoints';
-
 @use '../../styles/partials/colors' as colors;
 @use '../../styles/partials/typography' as typography;
 @use '../../styles/partials/spaces' as spaces;
 @use '../../styles/partials/breakpoints' as breakpoints;
+
 
 .game-container {
   width: 100%;
@@ -95,9 +91,15 @@
 }
 
 @media only screen and (min-width: breakpoints.$laptop-min) {
+  .game-container {
+    justify-content: flex-start;
+  }
+
   .game-content {
     flex-direction: row;
-    gap: 0;
+    gap: 32px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .detailItem {
@@ -117,18 +119,26 @@
     justify-content: center;
     overflow: hidden;
     width: fit-content;
+    height: 433px;
+    position: relative;
   }
 
   .image {
-    width: auto;
+    display: block;
+    height: 100%;
+    width: 100%;
     object-fit: contain;
-    height: 433px;
   }
 
   .details-container {
-    width: fit-content;
-    padding-left: 85px;
+    height: 433px;
+    width: 40%;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  .details {
+    width: 100%;
   }
 
   .detailItem {
@@ -137,5 +147,33 @@
 
   .detail-p {
     white-space: pre-line;
+  }
+}
+
+@media only screen and (min-width: breakpoints.$ultra-wide-screen) {
+  .game-content {
+    gap: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .game-image {
+    width: fit-content;
+    height: 433px;
+    position: relative;
+  }
+
+  .image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .details-container {
+    height: 433px;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
   }
 }

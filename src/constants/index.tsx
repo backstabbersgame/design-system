@@ -107,21 +107,21 @@ export const details = [
     iconAlt: 'Ícone de vendas',
     title: '300+ cópias vendidas',
     description:
-      'Lorem ipsum dolor sit amet consectetur. Sit aliquet\nelementum enim sed sed tristique fringilla.',
+      'Lorem ipsum dolor sit amet consectetur. Sit aliquet elementum enim sed sed tristique fringilla.',
   },
   {
     iconSrc: '/images/sketch-logo.svg',
     iconAlt: 'Ícone de gameplay',
     title: '4 modos de jogo',
     description:
-      'Lorem ipsum dolor sit amet consectetur. Sit aliquet\nelementum enim sed sed tristique fringilla.',
+      'Lorem ipsum dolor sit amet consectetur. Sit aliquet elementum enim sed sed tristique fringilla. Lorem ipsum dolor sit amet consectetur.',
   },
   {
     iconSrc: '/images/heart.svg',
     iconAlt: 'Ícone de expansão',
     title: '3 expansões',
     description:
-      'Lorem ipsum dolor sit amet consectetur. Sit aliquet\nelementum enim sed sed tristique fringilla.',
+      'Lorem ipsum dolor sit amet consectetur. Sit aliquet elementum enim sed sed tristique fringilla.',
   },
 ];
 
@@ -129,20 +129,23 @@ export const details2 = [
   {
     iconSrc: '/images/sword.svg',
     iconAlt: 'Ícone de vendas',
-    title: '300+ cópias vendidas',
-    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    title: 'Mais de 1000 cópias vendidas',
+    description:
+      'Sucesso do Catarse em 2024, Backstabbers é o novo queridinho das mesas!',
   },
   {
     iconSrc: '/images/sketch-logo.svg',
     iconAlt: 'Ícone de gameplay',
-    title: '4 modos de jogo',
-    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    title: '5 modos de jogo',
+    description:
+      'Além da forma tradicional, Backstabbers pode ser jogado de mais 4 modos. Jogue um modo rápido, um jogo completo em apenas uma partida, conquiste todas as moedas dos oponentes ou jogue em dupla.',
   },
   {
     iconSrc: '/images/heart.svg',
     iconAlt: 'Ícone de expansão',
-    title: '3 expansões',
-    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    title: 'Evolua enquanto joga',
+    description:
+      'Além de 5 níveis onde o jogo cresce com o jogador, Backstabbers também conta com 3 expansões que aumentam ainda mais a diversão!',
   },
 ];
 
@@ -153,7 +156,7 @@ export const games: GameData[] = [
     images: {
       ...images,
     },
-    details: [...details],
+    details: [...details2],
     buttonText: 'Detalhes do jogo',
     link: '',
   },

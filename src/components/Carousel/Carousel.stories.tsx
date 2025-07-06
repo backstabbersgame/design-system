@@ -39,6 +39,13 @@ export const AutoPlayDisabled: Story = {
     games: gamesMock,
     autoPlay: false,
   },
+  render: (args) => (
+    <div style={{ width: '100vw', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: '88vw', display: 'flex' }}>
+        <Carousel {...args} />
+      </div>
+    </div>
+  ),
 };
 
 export const SingleItem: Story = {
