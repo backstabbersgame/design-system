@@ -125,7 +125,7 @@ export const Header: React.FC<HeaderProps> = ({
     <BasicHeader
       className={variant !== 'solara' ? styles['header-games'] : styles.header}
     >
-      {showLogo || !isMobileOrTablet ? (
+      {showLogo || !isMobileOrTablet || variant === 'solara' ? (
         <div
           onClick={onLogoClick}
           tabIndex={0}

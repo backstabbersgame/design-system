@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { CaretDownIcon, CaretUpIcon, SignOutIcon, XIcon, } from '@phosphor-icons/react/dist/ssr';
 import styles from './ModalMenu.module.scss';
@@ -83,6 +82,19 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
                 " ",
                 logoutButton.label))));
     };
+    const renderIcon = (icon, isActive) => {
+        if (React.isValidElement(icon)) {
+            return React.cloneElement(icon, {
+                className: [styles.iconSvg, isActive ? styles['icon-active'] : ''].join(' '),
+            });
+        }
+        if (typeof icon === 'object' &&
+            'svgActive' in icon &&
+            'svgInactive' in icon) {
+            return isActive ? icon.svgActive : icon.svgInactive;
+        }
+        return null;
+    };
     return (React.createElement(AnimatePresence, null, isOpen ? (React.createElement("div", { className: styles.overlay },
         React.createElement(motion.aside, { className: styles.modal, initial: { opacity: 0, x: '100%' }, animate: { opacity: 1, x: 0 }, transition: { duration: 0.3, ease: 'easeInOut' }, exit: { opacity: 0, x: '100%' }, role: 'dialog', "aria-modal": 'true', "aria-label": title },
             showHeader && (React.createElement("header", { className: isGame ? styles['header-games'] : styles.header },
@@ -107,15 +119,7 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
                                     isItemActive(item) ? styles.active : '',
                                 ].join(' '), onClick: () => handleItemClick(item), "aria-expanded": !!item.hasSubMenu && openSubMenu === item.id, "aria-controls": item.hasSubMenu ? `submenu-${item.id}` : undefined },
                                 React.createElement("span", { className: styles['icon-label'] },
-                                    React.isValidElement(item.icon) ? (React.cloneElement(item.icon, {
-                                        className: [
-                                            styles.iconSvg,
-                                            isActive ? styles['icon-active'] : '',
-                                        ].join(' '),
-                                    })) : typeof item.icon === 'object' &&
-                                        'svgActive' in item.icon ? (React.createElement(Image, { src: isActive
-                                            ? item.icon.svgActive
-                                            : item.icon.svgInactive, alt: item.label, width: 24, height: 24, className: styles.icon })) : null,
+                                    renderIcon(item.icon, isActive ? isActive : false),
                                     React.createElement("span", { className: styles.label }, item.label)),
                                 item.hasSubMenu && (React.createElement("span", { className: styles.arrow }, openSubMenu === item.id ? (React.createElement(CaretUpIcon, { size: 20 })) : (React.createElement(CaretDownIcon, { size: 20 }))))),
                             item.hasSubMenu && renderSubMenu(item)),

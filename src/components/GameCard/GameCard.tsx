@@ -28,6 +28,7 @@ interface GameCardProps {
   buttonText?: string;
   name: string;
   onHeightChange?: (height: number) => void;
+  onDetailsContainerHeightChange?: (height: number) => void;
 }
 
 const GameCard = ({
@@ -38,6 +39,7 @@ const GameCard = ({
   buttonText = 'Detalhes do jogo',
   name,
   onHeightChange,
+  onDetailsContainerHeightChange,
 }: GameCardProps) => {
   const { currentBreakpoint } = useBreakpoint();
   const isMobile = currentBreakpoint === 'mobile';
@@ -50,39 +52,20 @@ const GameCard = ({
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
-    if (isNotMobileAndisNotTablet) {
-      const updateHeight = () => {
-        const detailsCurrentHeight = detailsRef.current?.offsetHeight;
+    if (!detailsRef.current || !onDetailsContainerHeightChange) return;
 
-        if (detailsCurrentHeight && imageRef.current) {
-          imageRef.current.style.height = `${detailsCurrentHeight}px`;
-        }
-        if (containerRef.current && onHeightChange) {
-          onHeightChange(containerRef.current.offsetHeight);
-        }
-      };
+    const updateHeight = () => {
+      const rect = detailsRef.current!.getBoundingClientRect();
+      onDetailsContainerHeightChange(rect.height);
+    };
 
-      updateHeight();
-      window.addEventListener('resize', updateHeight);
+    updateHeight();
 
-      return () => {
-        window.removeEventListener('resize', updateHeight);
-      };
-    } else {
-      if (imageRef.current) {
-        imageRef.current.style.height = '';
-      }
-      if (containerRef.current && onHeightChange) {
-        onHeightChange(containerRef.current.offsetHeight);
-      }
-    }
-    const timeoutId = setTimeout(() => {
-      if (containerRef.current && onHeightChange) {
-        onHeightChange(containerRef.current.offsetHeight);
-      }
-    }, 50);
-    return () => clearTimeout(timeoutId);
-  }, [isNotMobileAndisNotTablet, onHeightChange]);
+    const ro = new ResizeObserver(updateHeight);
+    ro.observe(detailsRef.current);
+
+    return () => ro.disconnect();
+  }, [onDetailsContainerHeightChange]);
 
   return (
     <div
@@ -91,6 +74,7 @@ const GameCard = ({
     >
       <div className={styles['game-content']}>
         <motion.div
+          key={id}
           className={styles['game-image']}
           ref={imageRef}
           initial={{ opacity: 0, x: '50%' }}
@@ -113,6 +97,7 @@ const GameCard = ({
           />
         </motion.div>
         <motion.div
+          key={id}
           className={styles['details-container']}
           ref={detailsRef}
           initial={{ opacity: 0, x: '50%' }}
@@ -120,31 +105,34 @@ const GameCard = ({
           exit={{ opacity: 0, x: '-50%' }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
-          {details.map((detail, index) => (
-            <>
-              <div key={`${name}-detail-${index}`}>
-                <div className={styles.detail}>
-                  <Image
-                    width={32}
-                    height={32}
-                    src={`${basePath}${detail.iconSrc}`}
-                    alt={detail.iconAlt}
-                  />
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '8px',
-                    }}
-                  >
-                    <h4 className={styles['detail-title']}>{detail.title}</h4>
-                    <p className={styles['detail-p']}>{detail.description}</p>
+          <div className={styles.details}>
+            {details.map((detail, index) => (
+              <>
+                <div key={`${name}-detail-${index}`}>
+                  <div className={styles.detailItem}>
+                    <Image
+                      key={`${name}-detail-${index}`}
+                      width={32}
+                      height={32}
+                      src={`${basePath}${detail.iconSrc}`}
+                      alt={detail.iconAlt}
+                    />
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px',
+                      }}
+                    >
+                      <h4 className={styles['detail-title']}>{detail.title}</h4>
+                      <p className={styles['detail-p']}>{detail.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {index < details.length - 1 && <hr className={styles.line} />}
-            </>
-          ))}
+                {index < details.length - 1 && <hr className={styles.line} />}
+              </>
+            ))}
+          </div>
           <Button
             variant='tertiary'
             className={styles.btn}

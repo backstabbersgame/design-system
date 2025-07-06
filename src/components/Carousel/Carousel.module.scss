@@ -1,3 +1,5 @@
+@use '../../styles/partials/breakpoints' as breakpoints;
+
 .carouselWrapper {
   display: flex;
   align-items: stretch;
@@ -40,5 +42,17 @@
 
   svg {
     fill: #ffffff;
+  }
+}
+
+@media only screen and (min-width: breakpoints.$tablet-min) {
+  .carouselNext {
+    align-self: flex-end;
+  }
+}
+
+@media only screen and (min-width: breakpoints.$laptop-min) {
+  .carouselNext {
+    align-self: initial;
   }
 }

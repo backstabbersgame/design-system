@@ -21,7 +21,8 @@ interface GameCardProps {
     buttonText?: string;
     name: string;
     onHeightChange?: (height: number) => void;
+    onDetailsContainerHeightChange?: (height: number) => void;
 }
-declare const GameCard: ({ id, link, images, details, buttonText, name, onHeightChange, }: GameCardProps) => React.JSX.Element;
+declare const GameCard: ({ id, link, images, details, buttonText, name, onHeightChange, onDetailsContainerHeightChange, }: GameCardProps) => React.JSX.Element;
 export default GameCard;
 //# sourceMappingURL=GameCard.d.ts.map

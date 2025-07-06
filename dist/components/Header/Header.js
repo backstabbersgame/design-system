@@ -92,7 +92,7 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
         }
     };
     return (React.createElement(BasicHeader, { className: variant !== 'solara' ? styles['header-games'] : styles.header },
-        showLogo || !isMobileOrTablet ? (React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
+        showLogo || !isMobileOrTablet || variant === 'solara' ? (React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
             React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() }))) : (React.createElement(BackButton, { onClick: onBack, tabIndex: 0, "aria-label": 'Voltar' })),
         handlePageName(),
         isMobileOrTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },

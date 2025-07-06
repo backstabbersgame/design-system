@@ -13,7 +13,9 @@ export type SubItem = {
 
 export type ModalItem = {
   id: string;
-  icon: React.ReactElement | { svgActive: string; svgInactive: string };
+  icon:
+    | React.ReactElement
+    | { svgActive: React.ReactElement; svgInactive: React.ReactElement };
   label: string;
   href?: string;
   hasSubMenu?: boolean;

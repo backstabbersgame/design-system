@@ -1,10 +1,13 @@
 import React from 'react';
-import { HouseIcon, RocketIcon, UsersThreeIcon, ShoppingCartIcon, ChatsIcon, } from '@phosphor-icons/react';
+import Image from 'next/image';
+import { HouseIcon, RocketIcon, UsersThreeIcon, ShoppingCartIcon, ChatsIcon, } from '@phosphor-icons/react/dist/ssr';
+const ActiveIcon = (React.createElement(Image, { src: '/images/planet-active.svg', alt: 'item.label', width: 24, height: 24 }));
+const InactiveIcon = (React.createElement(Image, { src: '/images/planet-inactive.svg', alt: 'item.label', width: 24, height: 24 }));
 export const links = [
-    { name: 'Início', href: '#inicio' },
-    { name: 'Jogos', href: '#jogos' },
-    { name: 'Sobre', href: '#sobre' },
-    { name: 'Newsletter', href: '#newsletter' },
+    { id: 'inicio', name: 'Início', href: '#inicio' },
+    { id: 'jogos', name: 'Jogos', href: '#jogos' },
+    { id: 'sobre', name: 'Sobre', href: '#sobre' },
+    { id: 'newsletter', name: 'Newsletter', href: '#newsletter' },
 ];
 export const defaultMenuItems = [
     {
@@ -29,8 +32,8 @@ export const defaultMenuItems = [
         id: 'newsletter',
         label: 'Newsletter',
         icon: {
-            svgActive: '/images/planet-active.svg',
-            svgInactive: '/images/planet-inactive.svg',
+            svgActive: ActiveIcon,
+            svgInactive: InactiveIcon,
         },
         href: '#newsletter',
     },
@@ -87,6 +90,26 @@ export const details = [
         description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet\nelementum enim sed sed tristique fringilla.',
     },
 ];
+export const details2 = [
+    {
+        iconSrc: '/images/sword.svg',
+        iconAlt: 'Ícone de vendas',
+        title: '300+ cópias vendidas',
+        description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    },
+    {
+        iconSrc: '/images/sketch-logo.svg',
+        iconAlt: 'Ícone de gameplay',
+        title: '4 modos de jogo',
+        description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    },
+    {
+        iconSrc: '/images/heart.svg',
+        iconAlt: 'Ícone de expansão',
+        title: '3 expansões',
+        description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+    },
+];
 export const games = [
     {
         id: 1,
@@ -111,7 +134,7 @@ export const games = [
                 height: 394,
             },
         },
-        details: [...details],
+        details: [...details2],
         buttonText: 'Detalhes do jogo',
         link: '',
     },

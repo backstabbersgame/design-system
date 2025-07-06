@@ -20,15 +20,17 @@ export const BasicNav: React.FC<BasicNavProps> = ({
       className={`${styles.nav} ${className || ''}`}
       {...props}
     >
-     { isSubpage && <a
-        key={pageLink}
-        href={pageLink}
-        className={`${styles.home}
+      {isSubpage && (
+        <a
+          key={pageLink}
+          href={pageLink}
+          className={`${styles.home}
           ${mode === 'light' ? styles.light : styles.dark}
           ${variant !== 'solara' ? styles.nonSolara : ''}`}
-      >
-        <HouseIcon size={24} />
-      </a>}
+        >
+          <HouseIcon size={24} />
+        </a>
+      )}
       {links.map(({ name, href }) => (
         <a
           key={href}
@@ -39,9 +41,7 @@ export const BasicNav: React.FC<BasicNavProps> = ({
           ${mode === 'light' ? styles.light : styles.dark}
           ${variant !== 'solara' ? styles.nonSolara : ''}`}
           onClick={(e) => {
-            if (href.startsWith('#')) {
-              e.preventDefault();
-            }
+            e.preventDefault();
             onLinkClick?.(href);
           }}
           aria-current={activeLink === href ? 'page' : undefined}

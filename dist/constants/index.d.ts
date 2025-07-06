@@ -22,5 +22,11 @@ export declare const details: {
     title: string;
     description: string;
 }[];
+export declare const details2: {
+    iconSrc: string;
+    iconAlt: string;
+    title: string;
+    description: string;
+}[];
 export declare const games: GameData[];
 //# sourceMappingURL=index.d.ts.map

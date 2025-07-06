@@ -1,6 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
 import { Link } from '../types/link';
 import { FooterItem, ModalItem } from '../types/modal';
+import { GameData } from '../types/interfaces';
 import {
   HouseIcon,
   RocketIcon,
@@ -8,14 +10,31 @@ import {
   NewspaperIcon,
   ShoppingCartIcon,
   ChatsIcon,
-} from '@phosphor-icons/react';
-import { GameData } from '../types/interfaces';
+  PlanetIcon,
+} from '@phosphor-icons/react/dist/ssr';
+
+const ActiveIcon = (
+  <Image
+    src='/images/planet-active.svg'
+    alt={'item.label'}
+    width={24}
+    height={24}
+  />
+);
+const InactiveIcon = (
+  <Image
+    src='/images/planet-inactive.svg'
+    alt={'item.label'}
+    width={24}
+    height={24}
+  />
+);
 
 export const links: Link[] = [
-  { name: 'Início', href: '#inicio' },
-  { name: 'Jogos', href: '#jogos' },
-  { name: 'Sobre', href: '#sobre' },
-  { name: 'Newsletter', href: '#newsletter' },
+  { id: 'inicio', name: 'Início', href: '#inicio' },
+  { id: 'jogos', name: 'Jogos', href: '#jogos' },
+  { id: 'sobre', name: 'Sobre', href: '#sobre' },
+  { id: 'newsletter', name: 'Newsletter', href: '#newsletter' },
 ];
 
 export const defaultMenuItems: ModalItem[] = [
@@ -41,8 +60,8 @@ export const defaultMenuItems: ModalItem[] = [
     id: 'newsletter',
     label: 'Newsletter',
     icon: {
-      svgActive: '/images/planet-active.svg',
-      svgInactive: '/images/planet-inactive.svg',
+      svgActive: ActiveIcon,
+      svgInactive: InactiveIcon,
     },
     href: '#newsletter',
   },
@@ -106,6 +125,27 @@ export const details = [
   },
 ];
 
+export const details2 = [
+  {
+    iconSrc: '/images/sword.svg',
+    iconAlt: 'Ícone de vendas',
+    title: '300+ cópias vendidas',
+    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+  },
+  {
+    iconSrc: '/images/sketch-logo.svg',
+    iconAlt: 'Ícone de gameplay',
+    title: '4 modos de jogo',
+    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+  },
+  {
+    iconSrc: '/images/heart.svg',
+    iconAlt: 'Ícone de expansão',
+    title: '3 expansões',
+    description: 'Lorem ipsum dolor sit amet consectetur. Sit aliquet',
+  },
+];
+
 export const games: GameData[] = [
   {
     id: 1,
@@ -132,7 +172,7 @@ export const games: GameData[] = [
         height: 394,
       },
     },
-    details: [...details],
+    details: [...details2],
     buttonText: 'Detalhes do jogo',
     link: '',
   },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, Dispatch } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Carousel.module.scss';
-import { CaretRight } from '@phosphor-icons/react/dist/ssr';
+import { CaretRightIcon } from '@phosphor-icons/react/dist/ssr';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import GameCard from '../GameCard/GameCard';
 import { GameData } from '../../types/interfaces';
@@ -20,7 +20,6 @@ const Carousel = ({
   const { currentBreakpoint } = useBreakpoint();
   const isMobile = currentBreakpoint === 'mobile';
   const isTablet = currentBreakpoint === 'tablet';
-  const isNotMobileAndisNotTablet = !isMobile && !isTablet;
   const [isPaused, setIsPaused] = useState(false);
   const [containerHeight, setContainerHeight] = useState<number | undefined>(
     undefined
@@ -29,6 +28,13 @@ const Carousel = ({
     undefined
   );
   const [activeIndex, setActiveIndex] = useState(0);
+  const [detailsContainerHeight, setDetailsContainerHeight] = useState<
+    number | undefined
+  >(undefined);
+
+  const handleDetailsContainerHeightChange = useCallback((height: number) => {
+    setDetailsContainerHeight(height);
+  }, []);
 
   const handleGameCardHeightChange = useCallback((height: number) => {
     setGameCardHeight(height);
@@ -90,9 +96,12 @@ const Carousel = ({
               name={games[activeIndex].name}
               onHeightChange={handleGameCardHeightChange}
               link={games[activeIndex].link}
+              onDetailsContainerHeightChange={
+                handleDetailsContainerHeightChange
+              }
             />
 
-            {isNotMobileAndisNotTablet && (
+            {!isMobile && (
               <button
                 onClick={() => {
                   setIsPaused(true);
@@ -100,12 +109,16 @@ const Carousel = ({
                 }}
                 className={styles.carouselNext}
                 style={
-                  containerHeight ? { height: `${containerHeight}px` } : {}
+                  isTablet && detailsContainerHeight
+                    ? { height: `${detailsContainerHeight}px` }
+                    : containerHeight
+                    ? { height: `${containerHeight}px` }
+                    : {}
                 }
                 aria-label='Próximo item'
                 onMouseEnter={() => setIsPaused(true)}
               >
-                <CaretRight size={32} />
+                <CaretRightIcon size={32} />
               </button>
             )}
           </motion.div>

@@ -193,6 +193,25 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
     );
   };
 
+  const renderIcon = (icon: ModalItem['icon'], isActive: boolean) => {
+    if (React.isValidElement(icon)) {
+      return React.cloneElement(icon as ReactElement<any>, {
+        className: [styles.iconSvg, isActive ? styles['icon-active'] : ''].join(
+          ' '
+        ),
+      });
+    }
+
+    if (
+      typeof icon === 'object' &&
+      'svgActive' in icon &&
+      'svgInactive' in icon
+    ) {
+      return isActive ? icon.svgActive : icon.svgInactive;
+    }
+    return null;
+  };
+
   return (
     <AnimatePresence>
       {isOpen ? (
@@ -261,30 +280,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
                           }
                         >
                           <span className={styles['icon-label']}>
-                            {React.isValidElement(item.icon) ? (
-                              React.cloneElement(
-                                item.icon as ReactElement<any>,
-                                {
-                                  className: [
-                                    styles.iconSvg,
-                                    isActive ? styles['icon-active'] : '',
-                                  ].join(' '),
-                                }
-                              )
-                            ) : typeof item.icon === 'object' &&
-                              'svgActive' in item.icon ? (
-                              <Image
-                                src={
-                                  isActive
-                                    ? item.icon.svgActive
-                                    : item.icon.svgInactive
-                                }
-                                alt={item.label}
-                                width={24}
-                                height={24}
-                                className={styles.icon}
-                              />
-                            ) : null}
+                            {renderIcon(item.icon, isActive ? isActive : false)}
                             <span className={styles.label}>{item.label}</span>
                           </span>
                           {item.hasSubMenu && (

@@ -30,11 +30,9 @@
 
 .image {
   flex: 1;
-  width: auto;
-  height: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  display: block;
 }
 
 .details-container {
@@ -42,10 +40,17 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   gap: 24px;
 }
 
-.detail img {
+.detailItem img {
   margin-bottom: 8px;
 }
 
@@ -66,6 +71,7 @@
 
 .line {
   border: none;
+  margin: 0;
   width: 100%;
   height: 2px;
   background: linear-gradient(90deg, #4547a9 0%, rgba(0, 0, 0, 0) 100%);
@@ -78,13 +84,23 @@
   margin-top: 8px;
 }
 
+@media only screen and (min-width: breakpoints.$tablet-min) {
+  .btn {
+    width: 50%;
+  }
+
+  .game-content {
+    gap: 40px;
+  }
+}
+
 @media only screen and (min-width: breakpoints.$laptop-min) {
   .game-content {
     flex-direction: row;
     gap: 0;
   }
 
-  .detail {
+  .detailItem {
     display: flex;
     flex-direction: row;
     gap: 24px;
@@ -106,17 +122,16 @@
   .image {
     width: auto;
     object-fit: contain;
-    max-height: 100%;
+    height: 433px;
   }
 
   .details-container {
-    flex: none;
     width: fit-content;
-    height: fit-content;
     padding-left: 85px;
+    justify-content: space-between;
   }
 
-  .detail {
+  .detailItem {
     width: auto;
   }
 

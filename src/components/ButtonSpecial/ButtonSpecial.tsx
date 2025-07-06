@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './ButtonSpecial.module.scss';
 
 interface ButtonSpecialProps {
-  icon: React.ReactNode;
+  icon: React.ReactElement;
   label: string;
   href: string;
   size?: 'small' | 'big';

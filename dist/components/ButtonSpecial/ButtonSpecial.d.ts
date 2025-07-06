@@ -1,6 +1,6 @@
 import React from 'react';
 interface ButtonSpecialProps {
-    icon: React.ReactNode;
+    icon: React.ReactElement;
     label: string;
     href: string;
     size?: 'small' | 'big';
