@@ -74,7 +74,7 @@ const GameCard = ({
     >
       <div className={styles['game-content']}>
         <motion.div
-          key={id}
+          key={`${id}-image`}
           className={styles['game-image']}
           ref={imageRef}
           initial={{ opacity: 0, x: '50%' }}
@@ -97,7 +97,7 @@ const GameCard = ({
           />
         </motion.div>
         <motion.div
-          key={id}
+          key={`${id}-details`}
           className={styles['details-container']}
           ref={detailsRef}
           initial={{ opacity: 0, x: '50%' }}

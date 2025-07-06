@@ -28,13 +28,13 @@ const GameCard = ({ id, link = '', images, details, buttonText = 'Detalhes do jo
     }, [onDetailsContainerHeightChange]);
     return (React.createElement("div", { className: styles['game-container'], ref: containerRef },
         React.createElement("div", { className: styles['game-content'] },
-            React.createElement(motion.div, { key: id, className: styles['game-image'], ref: imageRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
+            React.createElement(motion.div, { key: `${id}-image`, className: styles['game-image'], ref: imageRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
                 React.createElement(Image, { width: currentImage.width, height: currentImage.height, src: `${basePath}${currentImage.src}`, alt: `Capa do jogo ${name}`, className: styles.image, priority: true, onLoad: () => {
                         if (containerRef.current && onHeightChange) {
                             onHeightChange(containerRef.current.offsetHeight);
                         }
                     } })),
-            React.createElement(motion.div, { key: id, className: styles['details-container'], ref: detailsRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
+            React.createElement(motion.div, { key: `${id}-details`, className: styles['details-container'], ref: detailsRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
                 React.createElement("div", { className: styles.details }, details.map((detail, index) => (React.createElement(React.Fragment, null,
                     React.createElement("div", { key: `${name}-detail-${index}` },
                         React.createElement("div", { className: styles.detailItem },
