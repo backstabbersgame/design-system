@@ -23,7 +23,6 @@ export const BasicSelect: React.FC<BasicSelectProps> = ({
         ${className || ''}`}
       multiple={multiple}
       onChange={(e) => setSelected(e.target.value)}
-      defaultValue=''
       {...props}
     >
       {!multiple && placeholder && (

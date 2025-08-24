@@ -16,7 +16,7 @@ export const BasicSelect = (_a) => {
     const [selected, setSelected] = useState('');
     return (React.createElement("select", Object.assign({ className: `${styles.select}  ${selected === '' ? styles.placeholder : ''}
         ${multiple ? styles.hide : ''}
-        ${className || ''}`, multiple: multiple, onChange: (e) => setSelected(e.target.value), defaultValue: '' }, props),
+        ${className || ''}`, multiple: multiple, onChange: (e) => setSelected(e.target.value) }, props),
         !multiple && placeholder && (React.createElement("option", { value: '', disabled: true }, placeholder)),
         options.map((option) => (React.createElement("option", { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
 };
