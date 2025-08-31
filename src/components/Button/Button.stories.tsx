@@ -23,6 +23,8 @@ Primary.args = {
   children: 'Label',
   arrowLeft: true,
   arrowRight: true,
+  arrowUp: false,
+  arrowDown: false,
 };
 
 export const Secondary = Template.bind({});
@@ -30,7 +32,9 @@ Secondary.args = {
   variant: 'secondary',
   children: 'Label',
   arrowLeft: true,
-  arrowRight: true,
+  arrowRight: false,
+  arrowUp: true,
+  arrowDown: false,
 };
 
 export const Tertiary = Template.bind({});
@@ -39,6 +43,8 @@ Tertiary.args = {
   children: 'Label',
   arrowLeft: true,
   arrowRight: true,
+  arrowUp: false,
+  arrowDown: false,
 };
 
 export const Link = Template.bind({});
@@ -47,6 +53,8 @@ Link.args = {
   children: 'Label',
   arrowLeft: true,
   arrowRight: true,
+  arrowUp: false,
+  arrowDown: false,
 };
 
 export const CTA = Template.bind({});

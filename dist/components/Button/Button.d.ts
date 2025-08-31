@@ -5,6 +5,8 @@ export type ButtonProps = BasicButtonProps & {
     variant?: ButtonVariant;
     arrowLeft?: boolean;
     arrowRight?: boolean;
+    arrowDown?: boolean;
+    arrowUp?: boolean;
     href?: string;
 };
 export declare const Button: React.FC<ButtonProps>;

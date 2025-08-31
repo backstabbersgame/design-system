@@ -11,13 +11,21 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import styles from './Button.module.scss';
-import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react/dist/ssr';
+import { ArrowLeftIcon, ArrowRightIcon, ArrowDownIcon, ArrowUpIcon, } from '@phosphor-icons/react/dist/ssr';
 import BasicButton from '../../core/button';
 export const Button = (_a) => {
-    var { variant = 'primary', arrowLeft = false, arrowRight = false, href, className, children } = _a, props = __rest(_a, ["variant", "arrowLeft", "arrowRight", "href", "className", "children"]);
+    var { variant = 'primary', arrowLeft = false, arrowRight = false, arrowDown = false, arrowUp = false, href, className, children } = _a, props = __rest(_a, ["variant", "arrowLeft", "arrowRight", "arrowDown", "arrowUp", "href", "className", "children"]);
+    const handleArrow = arrowUp
+        ? ArrowUpIcon
+        : arrowDown
+            ? ArrowDownIcon
+            : ArrowRightIcon;
+    const renderArrow = (Arrow) => {
+        return (React.createElement(Arrow, { size: 24, className: styles.arrow }));
+    };
     return (React.createElement(BasicButton, Object.assign({ className: `${styles.button} ${styles[variant]} ${className || ''}`, href: href }, props),
         arrowLeft && (React.createElement(ArrowLeftIcon, { size: 24, className: styles.arrow })),
         children,
-        arrowRight && (React.createElement(ArrowRightIcon, { size: 24, className: styles.arrow }))));
+        renderArrow(handleArrow)));
 };
 export default Button;
