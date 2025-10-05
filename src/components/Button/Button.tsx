@@ -31,20 +31,14 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const handleArrow = arrowUp
-    ? ArrowUpIcon
-    : arrowDown
-    ? ArrowDownIcon
-    : ArrowRightIcon;
-
-  const renderArrow = (Arrow: Icon) => {
-    return (
-      <Arrow
-        size={24}
-        className={styles.arrow}
-      />
-    );
+  const handleArrow = (): Icon | null => {
+    if (arrowUp) return ArrowUpIcon;
+    if (arrowDown) return ArrowDownIcon;
+    if (arrowRight) return ArrowRightIcon;
+    return null;
   };
+
+  const ArrowIcon = handleArrow();
 
   return (
     <BasicButton
@@ -59,7 +53,12 @@ export const Button: React.FC<ButtonProps> = ({
         />
       )}
       {children}
-      {renderArrow(handleArrow)}
+      {ArrowIcon && (
+        <ArrowIcon
+          size={24}
+          className={styles.arrow}
+        />
+      )}
     </BasicButton>
   );
 };
