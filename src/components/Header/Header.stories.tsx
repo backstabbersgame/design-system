@@ -35,10 +35,10 @@ export default {
 type Story = StoryObj<typeof Header>;
 
 const basicLinks = [
-  { name: 'Início', href: '/' },
-  { name: 'Jogos', href: '/jogos' },
-  { name: 'Lojinha', href: '/lojinha' },
-  { name: 'Contato', href: '/contato' },
+  { id: '1', name: 'Início', href: '/' },
+  { id: '2', name: 'Jogos', href: '/jogos' },
+  { id: '3', name: 'Lojinha', href: '/lojinha' },
+  { id: '4', name: 'Contato', href: '/contato' },
 ];
 
 export const DesktopViewSolara: Story = {
@@ -48,6 +48,11 @@ export const DesktopViewSolara: Story = {
     variant: 'solara',
     activeLink: '/',
     pathname: '/',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
+    colorMode: 'light',
   },
   parameters: {
     viewport: {
@@ -63,6 +68,11 @@ export const TabletViewSolara: Story = {
     variant: 'solara',
     activeLink: '/',
     pathname: '/',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
+    colorMode: 'light',
   },
   parameters: {
     viewport: {
@@ -78,6 +88,10 @@ export const MobileViewSolara: Story = {
     variant: 'solara',
     activeLink: '/',
     pathname: '/',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -95,6 +109,10 @@ export const DesktopViewGames: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/backstabbers',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -112,6 +130,10 @@ export const TabletViewGames: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/ordem-ao-caos',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -129,6 +151,10 @@ export const MobileViewGames: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/rebeliao-dos-gatos',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -147,6 +173,10 @@ export const DesktopViewGamesDetails: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/backstabbers/como-jogar',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -164,6 +194,10 @@ export const TabletViewGamesDetails: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/ordem-ao-caos/como-jogar',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {
@@ -181,6 +215,10 @@ export const MobileViewGamesDetails: Story = {
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
     pathname: '/jogos/rebeliao-dos-gatos/como-jogar',
+    options: [
+      { value: 'pt-BR', label: '🇧🇷 Português' },
+      { value: 'en', label: '🇺🇸 English' },
+    ],
   },
   parameters: {
     viewport: {

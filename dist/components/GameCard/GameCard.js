@@ -18,24 +18,46 @@ const GameCard = ({ id, link = '', images, details, buttonText = 'Detalhes do jo
         if (!detailsRef.current || !onDetailsContainerHeightChange)
             return;
         const updateHeight = () => {
-            const rect = detailsRef.current.getBoundingClientRect();
-            onDetailsContainerHeightChange(rect.height);
+            if (!detailsRef.current)
+                return;
+            try {
+                const rect = detailsRef.current.getBoundingClientRect();
+                onDetailsContainerHeightChange(rect.height);
+            }
+            catch (error) {
+                console.warn('Erro ao obter dimensões do elemento:', error);
+            }
         };
         updateHeight();
         const ro = new ResizeObserver(updateHeight);
-        ro.observe(detailsRef.current);
-        return () => ro.disconnect();
+        if (detailsRef.current) {
+            ro.observe(detailsRef.current);
+        }
+        return () => {
+            try {
+                ro.disconnect();
+            }
+            catch (error) {
+                console.warn('Erro ao desconectar ResizeObserver:', error);
+            }
+        };
     }, [onDetailsContainerHeightChange]);
-    return (React.createElement("div", { className: styles['game-container'], ref: containerRef },
+    const handleImageLoad = () => {
+        if (containerRef.current && onHeightChange) {
+            try {
+                onHeightChange(containerRef.current.offsetHeight);
+            }
+            catch (error) {
+                console.warn('Erro ao obter altura do container:', error);
+            }
+        }
+    };
+    return (React.createElement("div", { className: styles['game-container'], ref: containerRef, key: id },
         React.createElement("div", { className: styles['game-content'] },
             React.createElement(motion.div, { key: `${id}-image`, className: styles['game-image'], ref: imageRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
-                React.createElement(Image, { width: currentImage.width, height: currentImage.height, src: `${basePath}${currentImage.src}`, alt: `Capa do jogo ${name}`, className: styles.image, priority: true, onLoad: () => {
-                        if (containerRef.current && onHeightChange) {
-                            onHeightChange(containerRef.current.offsetHeight);
-                        }
-                    } })),
+                React.createElement(Image, { width: currentImage.width, height: currentImage.height, src: `${basePath}${currentImage.src}`, alt: `Capa do jogo ${name}`, className: styles.image, priority: true, onLoad: handleImageLoad })),
             React.createElement(motion.div, { key: `${id}-details`, className: styles['details-container'], ref: detailsRef, initial: { opacity: 0, x: '50%' }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: '-50%' }, transition: { duration: 0.4, ease: 'easeInOut' } },
-                React.createElement("div", { className: styles.details }, details.map((detail, index) => (React.createElement(React.Fragment, null,
+                React.createElement("div", { className: styles.details }, details.map((detail, index) => (React.createElement(React.Fragment, { key: `${name}-detail-${index}` },
                     React.createElement("div", { key: `${name}-detail-${index}` },
                         React.createElement("div", { className: styles.detailItem },
                             React.createElement(Image, { key: `${name}-detail-${index}`, width: 32, height: 32, src: `${basePath}${detail.iconSrc}`, alt: detail.iconAlt }),

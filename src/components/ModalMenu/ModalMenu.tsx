@@ -103,6 +103,7 @@ const ModalMenu: React.FC<ModalMenuProps> = ({
               }`}
             >
               <button
+                key={subItem.id}
                 type='button'
                 onClick={() => handleSubItemClick(subItem)}
                 className={styles['submenu-button']}

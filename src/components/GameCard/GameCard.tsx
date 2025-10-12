@@ -55,22 +55,48 @@ const GameCard = ({
     if (!detailsRef.current || !onDetailsContainerHeightChange) return;
 
     const updateHeight = () => {
-      const rect = detailsRef.current!.getBoundingClientRect();
-      onDetailsContainerHeightChange(rect.height);
+      if (!detailsRef.current) return;
+
+      try {
+        const rect = detailsRef.current.getBoundingClientRect();
+        onDetailsContainerHeightChange(rect.height);
+      } catch (error) {
+        console.warn('Erro ao obter dimensões do elemento:', error);
+      }
     };
 
     updateHeight();
 
     const ro = new ResizeObserver(updateHeight);
-    ro.observe(detailsRef.current);
+    
+    if (detailsRef.current) {
+      ro.observe(detailsRef.current);
+    }
 
-    return () => ro.disconnect();
+    return () => {
+      try {
+        ro.disconnect();
+      } catch (error) {
+        console.warn('Erro ao desconectar ResizeObserver:', error);
+      }
+    };
   }, [onDetailsContainerHeightChange]);
+
+  const handleImageLoad = () => {
+    if (containerRef.current && onHeightChange) {
+      try {
+        onHeightChange(containerRef.current.offsetHeight);
+      } catch (error) {
+        console.warn('Erro ao obter altura do container:', error);
+      }
+    }
+  };
 
   return (
     <div
       className={styles['game-container']}
       ref={containerRef}
+      key={id}
     >
       <div className={styles['game-content']}>
         <motion.div
@@ -89,11 +115,7 @@ const GameCard = ({
             alt={`Capa do jogo ${name}`}
             className={styles.image}
             priority={true}
-            onLoad={() => {
-              if (containerRef.current && onHeightChange) {
-                onHeightChange(containerRef.current.offsetHeight);
-              }
-            }}
+            onLoad={handleImageLoad}
           />
         </motion.div>
         <motion.div
@@ -107,7 +129,7 @@ const GameCard = ({
         >
           <div className={styles.details}>
             {details.map((detail, index) => (
-              <>
+              <React.Fragment key={`${name}-detail-${index}`}>
                 <div key={`${name}-detail-${index}`}>
                   <div className={styles.detailItem}>
                     <Image
@@ -130,7 +152,7 @@ const GameCard = ({
                   </div>
                 </div>
                 {index < details.length - 1 && <hr className={styles.line} />}
-              </>
+              </React.Fragment>
             ))}
           </div>
           <Button

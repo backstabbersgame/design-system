@@ -17,7 +17,6 @@ const Template: StoryFn<typeof BasicSelect> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Label',
   placeholder: 'Select option',
   options: [
     { value: 'option1', label: 'Option 1' },

@@ -1,0 +1,38 @@
+@use '../../styles/partials/colors' as colors;
+@use '../../styles/partials/typography' as typography;
+
+.languageSelect {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 0;
+
+  .flagButton {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  .nativeSelect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.light {
+  border: 1px solid rgba(colors.$neutral-0, 0.4);
+}
+
+.dark {
+  border: 1px solid rgba(colors.$neutral-800, 0.4);
+}

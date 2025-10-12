@@ -76,11 +76,46 @@ const footerItems = [
   },
 ];
 
+const itemsWithSubmenus = [
+  {
+    id: 'jogos',
+    label: 'Nossos Jogos',
+    icon: <HouseIcon size={24} />,
+    hasSubMenu: true,
+    subItems: [
+      {
+        id: 'backstabbers',
+        label: 'Backstabbers',
+        href: '/jogos/backstabbers',
+      },
+      {
+        id: 'next-game',
+        label: 'Próximo Jogo',
+        href: '/jogos/next-game',
+      },
+      {
+        id: 'em-breve',
+        label: 'Em Breve',
+        href: '/jogos/em-breve',
+      },
+    ],
+  },
+];
 export const Default = {
   render: Template,
   args: {
     isGame: false,
+    isSubpage: true,
+  },
+};
+
+export const DefaultSubitems = {
+  render: Template,
+  args: {
+    isGame: false,
     isSubpage: false,
+    customItems: itemsWithSubmenus,
+    openSubMenu: 'jogos',
   },
 };
 

@@ -6,13 +6,13 @@ import styles from './Header.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { ListIcon } from '@phosphor-icons/react/dist/ssr';
 import BackButton from '../BackButton/BackButton';
-export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, isSubpage, subpageLink, pageLink, gameTitle, pageTitle, pathname, onBack, }) => {
+import SelectLanguage from '../SelectLanguage';
+export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onMenuClick, onLinkClick, onAccountClick, isSubpage, subpageLink, pageLink, gameTitle, pageTitle, pathname, onBack, currentLocale = 'pt-BR', onLocaleChange, options, colorMode, }) => {
     const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     const { currentBreakpoint } = useBreakpoint();
     const isMobile = currentBreakpoint === 'mobile';
     const isTablet = currentBreakpoint === 'tablet';
     const isMobileOrTablet = isMobile || isTablet;
-    // console.log({ pathname });
     const showLogo = pathname === '/' ||
         pathname === '/jogos/backstabbers' ||
         pathname === '/jogos/ordem-ao-caos' ||
@@ -95,8 +95,11 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
         showLogo || !isMobileOrTablet || variant === 'solara' ? (React.createElement("div", { onClick: onLogoClick, tabIndex: 0, role: 'button', "aria-label": 'Ir para in\u00EDcio', className: styles.logo },
             React.createElement(Image, { width: handleImageWidth(), height: handleImageHeight(), src: handleHeaderImage(), alt: handleAltImage() }))) : (React.createElement(BackButton, { onClick: onBack, tabIndex: 0, "aria-label": 'Voltar' })),
         handlePageName(),
-        isMobileOrTablet ? (React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
-            React.createElement(ListIcon, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon }))) : (React.createElement("div", { className: styles.side },
-            React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light', isSubpage: isSubpage, subpageLink: subpageLink, pageLink: pageLink })))));
+        isMobileOrTablet ? (React.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '16px' } },
+            React.createElement(SelectLanguage, { options: options, currentLocale: currentLocale, onLocaleChange: onLocaleChange, colorMode: colorMode }),
+            React.createElement("button", { onClick: onMenuClick, "aria-label": 'Abrir menu', className: styles.list },
+                React.createElement(ListIcon, { size: 24, className: variant !== 'solara' ? styles['icon-games'] : styles.icon })))) : (React.createElement("div", { className: styles.side },
+            React.createElement(BasicNav, { variant: variant, links: links, activeLink: activeLink, onLinkClick: onLinkClick, mode: variant !== 'solara' ? 'dark' : 'light', isSubpage: isSubpage, subpageLink: subpageLink, pageLink: pageLink }),
+            React.createElement(SelectLanguage, { options: options, currentLocale: currentLocale, onLocaleChange: onLocaleChange, colorMode: colorMode })))));
 };
 export default Header;

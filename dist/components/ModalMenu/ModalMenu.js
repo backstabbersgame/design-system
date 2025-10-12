@@ -59,7 +59,7 @@ const ModalMenu = ({ showHeader = true, isGame, gameTitle, title = 'Menu', isOpe
     const renderSubMenu = (item) => {
         var _a;
         return (React.createElement(AnimatePresence, null, openSubMenu === item.id && (React.createElement(motion.ul, { id: `submenu-${item.id}`, className: styles.submenu, initial: { opacity: 0, height: 0 }, animate: { opacity: 1, height: 'auto' }, exit: { opacity: 0, height: 0 }, transition: { duration: 0.2 } }, (_a = item.subItems) === null || _a === void 0 ? void 0 : _a.map((subItem) => (React.createElement("li", { key: subItem.id, className: `${styles['submenu-item']} ${activeItem === subItem.id ? styles.active : ''}` },
-            React.createElement("button", { type: 'button', onClick: () => handleSubItemClick(subItem), className: styles['submenu-button'] }, subItem.label))))))));
+            React.createElement("button", { key: subItem.id, type: 'button', onClick: () => handleSubItemClick(subItem), className: styles['submenu-button'] }, subItem.label))))))));
     };
     const renderFooter = () => {
         return (React.createElement("div", { className: styles['container-footer'] },

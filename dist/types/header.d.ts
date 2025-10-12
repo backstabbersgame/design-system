@@ -1,4 +1,5 @@
 import { Link } from './link';
+type LocaleType = 'pt-BR' | 'en';
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
     variant: 'solara' | 'backstabbers' | 'ordem' | 'rebeliao' | 'armada' | 'decodica';
     links: Link[];
@@ -14,5 +15,13 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
     pageTitle?: string;
     pathname?: string;
     onBack?: () => void;
+    currentLocale: LocaleType;
+    onLocaleChange: (locale: LocaleType) => void;
+    options: {
+        value: LocaleType;
+        label: string;
+    }[];
+    colorMode?: 'light' | 'dark';
 }
+export {};
 //# sourceMappingURL=header.d.ts.map

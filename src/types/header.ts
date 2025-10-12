@@ -1,5 +1,7 @@
 import { Link } from './link';
 
+type LocaleType = 'pt-BR' | 'en';
+
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   variant:
     | 'solara'
@@ -21,4 +23,8 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   pageTitle?: string;
   pathname?: string;
   onBack?: () => void;
+  currentLocale: LocaleType;
+  onLocaleChange: (locale: LocaleType) => void;
+  options: { value: LocaleType; label: string }[];
+  colorMode?: 'light' | 'dark';
 }

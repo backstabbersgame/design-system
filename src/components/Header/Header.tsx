@@ -8,6 +8,9 @@ import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { ListIcon } from '@phosphor-icons/react/dist/ssr';
 import { HeaderProps } from '../../types/header';
 import BackButton from '../BackButton/BackButton';
+import InputSelect from '../InputSelect/InputSelect';
+import BasicSelect from '../../core/select';
+import SelectLanguage from '../SelectLanguage';
 
 export const Header: React.FC<HeaderProps> = ({
   variant = 'solara',
@@ -24,14 +27,16 @@ export const Header: React.FC<HeaderProps> = ({
   pageTitle,
   pathname,
   onBack,
+  currentLocale = 'pt-BR',
+  onLocaleChange,
+  options,
+  colorMode,
 }) => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const { currentBreakpoint } = useBreakpoint();
   const isMobile = currentBreakpoint === 'mobile';
   const isTablet = currentBreakpoint === 'tablet';
   const isMobileOrTablet = isMobile || isTablet;
-
-  // console.log({ pathname });
 
   const showLogo =
     pathname === '/' ||
@@ -149,18 +154,26 @@ export const Header: React.FC<HeaderProps> = ({
       )}
       {handlePageName()}
       {isMobileOrTablet ? (
-        <button
-          onClick={onMenuClick}
-          aria-label='Abrir menu'
-          className={styles.list}
-        >
-          <ListIcon
-            size={24}
-            className={
-              variant !== 'solara' ? styles['icon-games'] : styles.icon
-            }
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <SelectLanguage
+            options={options}
+            currentLocale={currentLocale}
+            onLocaleChange={onLocaleChange}
+            colorMode={colorMode}
           />
-        </button>
+          <button
+            onClick={onMenuClick}
+            aria-label='Abrir menu'
+            className={styles.list}
+          >
+            <ListIcon
+              size={24}
+              className={
+                variant !== 'solara' ? styles['icon-games'] : styles.icon
+              }
+            />
+          </button>
+        </div>
       ) : (
         <div className={styles.side}>
           <BasicNav
@@ -173,6 +186,13 @@ export const Header: React.FC<HeaderProps> = ({
             subpageLink={subpageLink}
             pageLink={pageLink}
           />
+          <SelectLanguage
+            options={options}
+            currentLocale={currentLocale}
+            onLocaleChange={onLocaleChange}
+            colorMode={colorMode}
+          />
+
           {/* <Button
             variant='cta'
             type='button'
