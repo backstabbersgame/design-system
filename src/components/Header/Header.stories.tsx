@@ -104,11 +104,11 @@ export const DesktopViewGames: Story = {
   args: {
     links: basicLinks,
     onAccountClick: () => alert('Minha conta clicado'),
-    variant: 'backstabbers',
+    variant: 'drag',
     activeLink: '/',
     pageLink: 'https://solarastudios.com.br/',
     isSubpage: true,
-    pathname: '/jogos/backstabbers',
+    pathname: '/jogos/drag-slay',
     options: [
       { value: 'pt-BR', label: '🇧🇷 Português' },
       { value: 'en', label: '🇺🇸 English' },
