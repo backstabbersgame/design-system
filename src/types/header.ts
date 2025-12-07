@@ -10,7 +10,8 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
     | 'rebeliao'
     | 'armada'
     | 'decodica'
-    | 'drag';
+    | 'drag'
+    | 'galhos';
   links: Link[];
   activeLink?: string;
   onLogoClick?: () => void;

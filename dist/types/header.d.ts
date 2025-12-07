@@ -1,7 +1,7 @@
 import { Link } from './link';
 type LocaleType = 'pt-BR' | 'en';
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-    variant: 'solara' | 'backstabbers' | 'ordem' | 'rebeliao' | 'armada' | 'decodica' | 'drag';
+    variant: 'solara' | 'backstabbers' | 'ordem' | 'rebeliao' | 'armada' | 'decodica' | 'drag' | 'galhos';
     links: Link[];
     activeLink?: string;
     onLogoClick?: () => void;

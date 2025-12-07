@@ -45,7 +45,8 @@ export const Header: React.FC<HeaderProps> = ({
     pathname === '/jogos/rebeliao-dos-gatos' ||
     pathname === '/jogos/armada-dos-caes' ||
     pathname === '/jogos/decodica' ||
-    pathname === '/jogos/drag-slay';
+    pathname === '/jogos/drag-slay' ||
+    pathname === '/jogos/galhos';
 
   const handleImageWidth = (): number => {
     switch (variant) {
@@ -63,6 +64,8 @@ export const Header: React.FC<HeaderProps> = ({
         return isMobileOrTablet ? 58.33 : 72.91;
       case 'drag':
         return isMobileOrTablet ? 58.33 : 26.6;
+      case 'galhos':
+        return isMobileOrTablet ? 58 : 73;
     }
   };
 
@@ -82,6 +85,8 @@ export const Header: React.FC<HeaderProps> = ({
         return isMobileOrTablet ? 32.01 : 40.01;
       case 'drag':
         return isMobileOrTablet ? 21.29 : 40.01;
+      case 'galhos':
+        return isMobileOrTablet ? 32 : 40;
     }
   };
 
@@ -101,6 +106,8 @@ export const Header: React.FC<HeaderProps> = ({
         return `${basePath}/images/logos/decodica.svg`;
       case 'drag':
         return `${basePath}/images/logos/drag.svg`;
+      case 'galhos':
+        return `${basePath}/images/logos/galhos.png`;
     }
   };
 
@@ -120,6 +127,8 @@ export const Header: React.FC<HeaderProps> = ({
         return 'Logo Decodica';
       case 'drag':
         return 'Logo Drag Slay';
+      case 'galhos':
+        return 'Logo Galhos';
     }
   };
 

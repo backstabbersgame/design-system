@@ -8,7 +8,8 @@ export interface BasicNavProps extends React.HTMLAttributes<HTMLElement> {
     | 'rebeliao'
     | 'armada'
     | 'decodica'
-    | 'drag';
+    | 'drag'
+    | 'galhos';
   links: Link[];
   activeLink?: string;
   onLinkClick?: (href: string) => void;

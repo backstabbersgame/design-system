@@ -19,7 +19,8 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
         pathname === '/jogos/rebeliao-dos-gatos' ||
         pathname === '/jogos/armada-dos-caes' ||
         pathname === '/jogos/decodica' ||
-        pathname === '/jogos/drag-slay';
+        pathname === '/jogos/drag-slay' ||
+        pathname === '/jogos/galhos';
     const handleImageWidth = () => {
         switch (variant) {
             case 'solara':
@@ -36,6 +37,8 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
                 return isMobileOrTablet ? 58.33 : 72.91;
             case 'drag':
                 return isMobileOrTablet ? 58.33 : 26.6;
+            case 'galhos':
+                return isMobileOrTablet ? 58 : 73;
         }
     };
     const handleImageHeight = () => {
@@ -54,6 +57,8 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
                 return isMobileOrTablet ? 32.01 : 40.01;
             case 'drag':
                 return isMobileOrTablet ? 21.29 : 40.01;
+            case 'galhos':
+                return isMobileOrTablet ? 32 : 40;
         }
     };
     const handleHeaderImage = () => {
@@ -72,6 +77,8 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
                 return `${basePath}/images/logos/decodica.svg`;
             case 'drag':
                 return `${basePath}/images/logos/drag.svg`;
+            case 'galhos':
+                return `${basePath}/images/logos/galhos.png`;
         }
     };
     const handleAltImage = () => {
@@ -90,6 +97,8 @@ export const Header = ({ variant = 'solara', links, activeLink, onLogoClick, onM
                 return 'Logo Decodica';
             case 'drag':
                 return 'Logo Drag Slay';
+            case 'galhos':
+                return 'Logo Galhos';
         }
     };
     const handlePageName = () => {
